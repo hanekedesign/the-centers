@@ -23,7 +23,8 @@ $variables_table = $wpdb->prefix . "centers_data";
 
 function core_scripts() {
   wp_enqueue_style('my-admin-theme', get_template_directory_uri() . '/assets/css/admin.min.css');
-  wp_enqueue_script('advedit-js', get_template_directory_uri() . '/assets/js/advedit.js', array('jquery'));
+  wp_enqueue_script('advedit-js-sorty', get_template_directory_uri() . '/assets/js/advedit-sorty.js', array('jquery'));
+  wp_enqueue_script('advedit-js', get_template_directory_uri() . '/assets/js/advedit.js', array('jquery','advedit-js-sorty'));
 }
 
 if (is_admin()) {
@@ -101,4 +102,13 @@ function getGlobalOption($name) {
   $result = $wpdb->get_row($query);
   return stripslashes(isset($result->value)?$result->value:NULL);
 }
+
+// This fixes the fact that some genius at WordPress decided it's okay to not have a set order for this
+// And saving doesn't work properly because of it.
+function grab_save() {
+  if ( isset( $_POST['post_update_file'] ) ) { 
+    require_once locate_template('/lib/'.$_POST['post_update_file']);
+  }
+} 
+add_action('save_post', 'grab_save');
 

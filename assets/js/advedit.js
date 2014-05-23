@@ -67,4 +67,13 @@ _$(function() {
     _$(_$(this).data('field')).val(_$(this).val());
   });
   _$('.color-selector select').change();
+
+  /* Form Markup Editor */
+  _$('#shorty').on('itemClicked',function(self,item,selected) {
+    if (selected === true) {
+      _$('#item-editor').show();
+    } else {
+      _$('#item-editor').hide();
+    }
+  });
 });

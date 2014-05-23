@@ -1,4 +1,4 @@
-<?php 
+<?php     
   function atk_gf_header($params,$body) {
     return "<h3>" . do_shortcode($body) . "</h3>";
   }
@@ -42,6 +42,7 @@
 
   function generate_panel() {
     global $post;
+    
     // Get our sidebar type
     $panelmode = get_post_meta( $post->ID, 'advedit_panelmode', true );
 

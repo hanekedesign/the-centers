@@ -3,11 +3,13 @@
 function render_header_box() {
   global $post;
   
+  // Allow saving
+  echo '<input type="hidden" name="post_update_file" value="advanced-edit-toolkit-save-fix.php">';
+
   $sel_id = get_post_meta($post->ID, 'advedit_header_mode', TRUE);
   $sel_id = empty($sel_id)?0:$sel_id;
   
-  $sel_color = get_post_meta($post->ID, 'advedit_header_color', TRUE);
-  $sel_color = empty($sel_color)?"primary":$sel_color;  
+  $sel_color = get_post_meta($post->ID, 'advedit_header_color', TRUE)?:"primary";
 
   wp_nonce_field( 'advedit_meta', 'advedit_meta_nonce' );
 
@@ -109,6 +111,12 @@ function render_sidebar($col) {
   // Image Mode Stuff
   $image_blurb = get_post_meta( $post->ID, 'advedit_image_blurb', true );
 
+  $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:[];
+  $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:[];
+  $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:[];
+  $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:[];
+  $sidebar_value = get_post_meta( $post->ID, 'advedit_sidebar_form_value', true )?:[];
+
   ?>    
       <div class="wp-col-<?php echo $col; ?> meta-box-sortables ui-sortable">
         <div class="postbox">
@@ -135,26 +143,31 @@ function render_sidebar($col) {
               <p><strong>Header Text</strong></p>
               <input type="text" name="advedit_contact_header" id="advedit_contact_header" value="<?php echo getGlobalOption('contact_header'); ?>">
               <p>
-                <div class="help">?
-                  <div class="helpbox">
-                    <strong>Creating Forms</strong>
-                    <p>Forms can be created using a simple tag markup:</p>
-                    <span class="code">
-                    <strong>Create Text Header</strong>
-                    [header]Header Text[/header]<br>
-                    <strong>Create Subtext</strong>
-                    [text]Subtext[/text]<br>
-                    <strong>Create a textbox</strong>
-                    [textbox name="submit_name" placeholder="Your Name"]<br>
-                    <strong>Create a textarea (tall textbox)</strong>
-                    [textarea name="submit_name" placeholder="Your Name"]<br>
-                    <strong>Create a submit button</strong>
-                    [submit]Send[/submit]<br></span>
-                    <p>If you get lost, you can always <a href="#" id="reset-form-box">reset to defaults.</a></p>
-                  </div>
-                </div>
                 <strong>Form Markup</strong></p>
-              <textarea type="text" name="advedit_contact_form" id="advedit_contact_form"><?php echo getGlobalOption('contact_form'); ?></textarea>
+                <sl:sortylist id="shorty" class="standard" data-form='["sidebar_form_type","sidebar_form_text","sidebar_form_name","sidebar_form_placeholder","sidebar_form_value"]' data-default='["text","Hello World","sidebar_form_name","sidebar_form_placeholder","sidebar_form_value"]' data-select="single" data-default-label="Text: Hello World!">
+                  <?php 
+                    for ($i = 0; $i < count($sidebar_types); $i++) {
+                      ?>
+                        <sl:item>
+                          <?php echo ucfirst($sidebar_types[$i]?:"text"); ?>: <?php echo $sidebar_texts[$i]?:"Hello World!"; ?>
+                          <input type="hidden" name="sidebar_form_type[]" value="<?php echo $sidebar_types[$i]?:"text"; ?>"/>
+                          <input type="hidden" name="sidebar_form_text[]" value="<?php echo $sidebar_texts[$i]?:"Hello World!"; ?>"/>
+                          <input type="hidden" name="sidebar_form_name[]" value="<?php echo $sidebar_names[$i]?:""; ?>"/>
+                          <input type="hidden" name="sidebar_form_placeholder[]" value="<?php echo $sidebar_place[$i]?:""; ?>"/>
+                          <input type="hidden" name="sidebar_form_value[]" value="<?php echo $sidebar_value[$i]?:""; ?>"/>
+                        </sl:item>
+                      <?php
+                    }
+                  ?>
+                  <sl:controls>
+                    <sl:add>Add</sl:add>
+                    <sl:sub>Delete</sl:sub>
+                  </sl:controls>
+                </sl:sortylist>
+              <div id="item-editor">
+                <p><strong>Item Editor</strong></p>
+                This item has no properties.
+              </div>
             </div>            
             <div class="sidebar-ops" data-id="3">
               <p><strong>Widget Area</strong></p>
@@ -186,42 +199,6 @@ function render_editor($col) {
   <?php
 }
 
-function saving_metabox( $post_id ) {
-  
-  // Check if our nonce is set.
-  if ( ! isset( $_POST['advedit_meta_nonce'] ) ) { return; }
-
-  // Verify that the nonce is valid.
-  if ( ! wp_verify_nonce( $_POST['advedit_meta_nonce'], 'advedit_meta' ) ) { return; }
-
-  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
-
-  // Check the user's permissions.
-  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
-      if ( ! current_user_can( 'edit_page', $post_id ) ) {
-          return;
-      }
-  } else {
-      if ( ! current_user_can( 'edit_post', $post_id ) ) {
-          return;
-      }
-  }
-
-  update_post_meta( $post_id, 'advedit_panelmode', $_POST['adved_panelselect'] );
-  update_post_meta( $post_id, 'advedit_image_blurb', $_POST['advedit_image_blurb']);
-  update_post_meta( $post_id, 'advedit_header_mode', $_POST['advedit_header_mode']);
-  update_post_meta( $post_id, 'advedit_header_color', $_POST['advedit_header_color']);
-    
-  if (isset($_POST['advedit_contact_header'])) {
-    addOrUpdateGlobalOption('contact_header',$_POST['advedit_contact_header']);
-  }
-  if (isset($_POST['advedit_contact_form'])) {
-    addOrUpdateGlobalOption('contact_form',$_POST['advedit_contact_form']);
-  }
-}
-
-add_action('save_post', 'saving_metabox');
 add_meta_box('adv_ed_header_meta',__('Header'),'render_header_box','page','normal','high');
 add_meta_box('adv_ed_meta',__('Advanced Page Editor'),'render_advanced_box','page','normal','high');
 remove_post_type_support('page', 'editor');
