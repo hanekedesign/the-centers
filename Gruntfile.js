@@ -15,6 +15,9 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
+          'assets/css/admin.min.css': [
+            'assets/less/admin.less'
+          ],
           'assets/css/main.min.css': [
             'assets/less/app.less'
           ]
@@ -23,9 +26,9 @@ module.exports = function(grunt) {
           compress: true,
           // LESS source map
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-          sourceMap: false,
-          sourceMapFilename: 'assets/css/main.min.css.map',
-          sourceMapRootpath: '/app/themes/roots/'
+          sourceMap: true,
+          sourceMapFilename: 'main.min.css',
+          sourceMapRootpath: '/wp-content/themes/the-centers/'
         }
       }
     },

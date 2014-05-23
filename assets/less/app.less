@@ -3,12 +3,15 @@
  */
 
 @import "bootstrap/bootstrap.less";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200italic,400,700,400italic,700italic);
 
 /* ==========================================================================
    Base
    ========================================================================== */
 
-body { }
+body { 
+  border-top: 5px solid @secondary;
+}
 
 
 
@@ -16,17 +19,299 @@ body { }
    Header
    ========================================================================== */
 
-.banner { }
+.banner { 
+  .callbox {
+    background: @primary;
+    width: 215px;
+    height: 85px;
+    float: right;
+    font-family: @font-family-sans-serif;
+    color: @white;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 0;
+    .cta {
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+      line-height: 16px;
+    }
+    .number {
+      font-size: 30px;
+      margin: 0;
+      padding: 0;
+      line-height: 28px;
+    }
+  }
+  .img {
+    background-image: url("../img/logo-centers.png"); 
+    background-repeat: no-repeat;
+    background-position: left center;
+    float: left;
+    width: 219px;
+    height: 85px;
+  } 
+}
+
+.nav-main { 
+  background-color: @gray;
+  background-origin: border-box;
+  background-clip: border-box;
+  border-bottom: 1px solid @gray-light;
+  border-top: 1px solid @gray-light;
+}
+
+.subbanner {
+  overflow: hidden;
+  &.color, .color {
+    &.primary {
+      background-color: @primary;    
+    }
+    &.secondary {
+      background-color: @secondary;    
+    }
+    &.tertiary {
+      background-color: @tertiary;    
+    }
+    &.gray {
+      background-color: @gray-lightest;    
+    }
+    &.container {
+      background-clip: content-box;
+    }
+  }
+  &.image-banner {
+    .text {
+      color: @white;
+      padding: 20px;
+      h1 { 
+        padding: 0;
+        margin: 0;
+        font-size: 36px;
+        font-weight: 700;  
+        font-style: italic;
+        line-height: 1.25;        
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.85;
+        text-align: left;
+      }
+    }
+    .image {
+      width: 100%;
+      height: 250px;
+      display: block;
+      .DEV-imagestripe();
+    }
+  }
+}
 
 
+
+/* ==========================================================================
+   Page-specific
+   ========================================================================== */
+
+.colored-back {
+  &.home-one {
+    padding-top: 40px;
+  }
+  &.home-two {
+    padding-top: 68px;
+    padding-bottom: 40px;
+    font-size: 18px;
+    line-height: 160%;
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+    a {
+      color: @secondary;
+      font-weight: 700;
+      &:hover {
+        text-decoration: none;
+        color: @primary;
+      }
+    }
+  }
+  &.home-three {
+    margin: 40px 0;
+  }
+  &.home-four {
+    margin-bottom: 40px;
+    color: @white;
+    .image {
+      .DEV-imagestripe();
+      width: 100%;
+      height: 350px;
+    }
+    .container {
+      background-color: @gray;
+      background-clip: content-box;
+      height: 350px;
+      position: relative;
+      
+      .flow {
+        padding-left: 20px;
+        height: 350px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+      
+      h3 {
+        font-size: 30px;
+        font-style: italic;
+        line-height: 1.25;
+        font-weight: 700;
+      }
+      
+      p {
+        font-size: 14px;
+        font-family: @font-family-sans-serif;
+        line-height: 1.85;
+        font-weight: 200;
+        -webkit-font-smoothing: subpixel-antialiased; // Fix smoothing in Chrome/Safari
+        font-smoothing: subpixel-antialiased; // Fix smoothing in Chrome/Safari
+        letter-spacing: 0.4px;
+      }
+      
+      button {
+        position: absolute;
+        bottom: 60px;
+      }
+    }
+  }
+}
 
 /* ==========================================================================
    Content
    ========================================================================== */
 
-.content { }
+.DEV-imagestripe() {
+    background: #000000;
+    @grad: 45deg, #000000 5%, #ffff00 6%, #ffff00 12%, #000000 13%, #000000 20%;
+    background: -moz-repeating-linear-gradient(@grad);
+    background: -webkit-repeating-linear-gradient(@grad);
+    background: -o-repeating-linear-gradient(@grad);
+    background: -ms-repeating-linear-gradient(@grad);
+    background: repeating-linear-gradient(@grad);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=1 );
+}
 
+.container.page {
+  padding: 20px;
+}
 
+.colored-back {
+  &.primary {
+    background-color: @gray-lightest;
+  }
+  &.secondary {
+    background-color: @gray;
+    color: @white;
+  }
+  &.tertiary {
+    background-color: @white;
+  }
+}
+
+.home-box {
+  text-align: center;
+  .image {
+    width: 100%;
+    height: 200px;
+    
+    /* TODO: Remove before production */
+    .DEV-imagestripe();
+    /* TODO: End */
+  }
+  .content {
+    padding: 10px 0;
+    background-color: @white;
+    .upper {
+      font-size: 20px;
+      color: @gray;
+    }
+    .lower {
+      font-size: 30px;
+      font-weight: 700;
+      font-style: italic;
+      color: @gray;
+      line-height: 30px;
+    }
+  }
+  .bottom {
+    line-height: 28px;
+    font-size: 14px;
+    color: @white;
+    font-weight: 700;
+    font-style: italic;
+    height: 28px;
+    margin-bottom: -28px;
+    &.primary {
+      background-color: @primary;
+    }
+    &.secondary {
+      background-color: @secondary;
+    }
+    &.tertiary {
+      background-color: @tertiary;
+    }
+  }
+}
+
+.home-box-mini {
+  .content {
+    padding: 15px;
+    color: @white;
+    height: 170px;
+    .upper {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .lower {
+      font-size: 26px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 137.5%;      
+    }
+  }
+  
+  .bottom {
+    text-align: center;
+    line-height: 28px;
+    font-size: 14px;
+    color: @white;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  &.primary {
+    .content {
+      background-color: @primary;
+    }
+    .bottom {
+      background-color: @primary-darker;
+    }
+  }
+  &.secondary {
+    .content {
+      background-color: @secondary;
+    }
+    .bottom {
+      background-color: @secondary-darker;
+    }
+  }
+  &.tertiary {
+    .bottom {
+      background-color: @tertiary;
+    }
+    .content {
+      background-color: @tertiary-darker;  
+    }
+  }
+
+}
 
 /* ==========================================================================
    Primary Content
@@ -37,7 +322,31 @@ body { }
 /* Gallery Shortcode */
 .gallery-row { padding: 15px 0; }
 
-
+.search-form {
+  margin-top: 20px;
+  input {
+    border: 0;
+    border-radius: 0;
+    background-color: @gray-lighter;
+    color: @white;
+    font-weight: 200;
+    font-style: italic;
+    font-size: 20px;
+    padding: 0 20px;
+    height: 35px;
+    .color-placeholder(@white,@gray-lighter);
+  }
+  button {
+    top: 0;
+    color: @white;
+    font-size: 18px;
+    height: 35px;
+    width: 35px;
+    background-color: @primary-darker;
+    border-radius: 0;
+    border: 0;
+  }
+}
 
 /* ==========================================================================
    Sidebar
@@ -45,6 +354,74 @@ body { }
 
 .sidebar { }
 
+.photo-sidebar {
+  background-color: @gray;
+  font-size: 36px;
+  font-style: italic;
+  line-height: 46px;
+  color: @white;
+  .blurb {
+    padding: 15px;
+  }
+  .photo {
+    width: 100%;
+    height: 180px;
+    .DEV-imagestripe();
+  }
+}
+
+.contact-sidebar {
+  .header {
+    background-color: @secondary;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 200;
+    padding: 20px 15px;
+    color: @white;
+  }
+  .form {
+    padding: 20px 15px;
+    background-color: @gray;
+    h3 {
+      color: @primary;
+      font-size: 24px;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 46px;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      font-family: @font-family-sans-serif;
+      line-height: 24px;
+      font-weight: 200;
+      color: @white;
+    }
+    input, textarea {
+      color: @white;
+      background-color: @gray-lighter;
+      font-style: italic;
+      line-height: 30px;
+      height: 30px;
+      width: 100%;
+      margin: 10px 0;
+      padding: 0 20px;      
+      border: 0;
+      .color-placeholder(@white,@gray-lighter);
+    }
+    textarea {
+      height: 120px;
+    }
+    button {
+      float: right;
+    }
+    .cf {
+      width: 100%;
+      height: 0;
+      clear: both;
+    }
+  }
+}
 
 
 /* ==========================================================================
@@ -63,9 +440,89 @@ body { }
    Footer
    ========================================================================== */
 
-.content-info { }
+form.newsletter {
+  margin-top: 25px;
+  padding: 10px 20px;
+  padding-bottom: 20px;
+  background-color: @gray-lighter;
+  color: @white;
+  overflow: auto;
+  label {
+    font-weight: 200;
+    font-style: italic;
+    font-size: 20px;
+  }
+  button {
+    font-weight: 200;
+    font-style: italic;
+    font-size: 20px;
+    background-color: @primary-darker;
+    color: @white;
+    border: 0;
+    outline: 0;
+    float: right;
+    height: 34px;
+    padding: 0px 40px;
+  }
+  input[type=email] {
+    font-weight: 200;
+    font-style: italic;
+    font-size: 20px;
+    background-color: @primary;
+    color: @white !important;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    margin: 10px 0;
+    height: 35px;
+    padding: 0 20px;
+    .color-placeholder(@white,@primary);
+  }
+}
 
+.foot-contact { 
+  min-height: 45px;
+  max-height: 90px;
+  background-color: @primary;
+  color: @gray;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 45px;
+  .number, .contact { 
+    display: inline-block;
+    margin: 0 50px;
+  }
+}
 
+.foot-main, .foot-copyright {
+  background-color: @gray;
+}
+
+.footer-menu-pad {
+  padding: 25px 0 0 0;
+}
+
+.copy {
+  font-size: 12px;
+  color: @gray-lighter;
+  display: inline-block;
+  font-weight: 200;
+  p {
+    margin-left: 15px;
+    display: inline-block;
+  }
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  display: block;
+  &.linkedin {
+    background-image: url('../img/logo-linkedin.png'); 
+    background-size: 100%;
+  }
+}
 
 /* ==========================================================================
    WordPress Generated Classes
@@ -88,3 +545,30 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 @media (min-width: @screen-md-min) { }
 
 @media (min-width: @screen-lg-min) { }
+
+/* ==========================================================================
+   Mixins
+   ========================================================================== */
+
+.color-placeholder(@color,@background) {
+    &:-webkit-autofill { // Remove webkit auto fill coloring.
+      box-shadow: 0 0 0 1800px @background inset !important;
+      color: @color !important;
+    }
+    &::-webkit-input-placeholder {
+      color: @color;
+      opacity: 1;
+    }
+    &:-moz-placeholder {
+      color: @color;
+      opacity: 1;
+    }
+    &::-moz-placeholder{
+      color: @color;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      color: @color;
+      opacity: 1;
+    }
+}

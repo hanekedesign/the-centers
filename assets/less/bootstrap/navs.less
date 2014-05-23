@@ -72,7 +72,115 @@
 // Tabs
 // -------------------------
 
-// Give the tabs something to sit on
+.nav-footer {
+  > li {
+    > a {
+      font-size: 16px;
+      font-style: italic;
+      color: @secondary;
+      font-weight: 200;      
+      padding: 8px 0;
+      &:before {
+        content: '+ ';
+      }
+    }
+    &:hover {
+      > a {
+        background-color: transparent;
+        color: @white;
+      }
+    }
+  }
+}
+
+.nav-footer-left {
+  display: inline-block;
+  > li {    
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 200;
+    &:not(:first-child) {
+      > a:before {
+        content: ' | ';
+      }
+    }
+    > a {
+      padding: 0;
+      color: @gray-lighter;
+    }
+    &:hover {
+      > a {
+        background-color: transparent;
+        color: @secondary;
+        &:before {
+          color: @gray-lighter;
+        }
+      }
+    }
+  }
+}
+
+.nav-mini {
+  text-align: right;
+  float: none;
+  height: 100%;
+  > li {    
+    display: inline-block;
+    margin-right: 40px;
+    > a {
+      line-height: 85px;
+      padding: 0;
+      font-size: 16px;
+      font-family: @font-family-sans-serif;
+      color: @gray;
+    }
+    &:hover {
+      > a {
+        background-color: transparent;
+        color: @secondary-darker;
+      }
+    }
+  }
+}
+
+.nav-blocks {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  
+  > li {
+    float: none;
+    border-right: 2px solid @gray-light;
+    border-left: 2px solid @gray-light;
+    display: table-cell;
+    text-align: center;
+    width: 1%;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 30px;
+    height: 30px;
+
+    > a {
+      white-space: pre;
+      color: @white;
+      font-family: @font-family-sans-serif;
+      padding: 0;
+    }
+    
+    &:hover {
+      > a {      
+        color: @secondary;
+        background-color: transparent;
+      }
+    }
+  }
+  
+  &.nav-justified {
+    .nav-justified();
+    .nav-tabs-justified();
+  }
+}
+
 .nav-tabs {
   border-bottom: 1px solid @nav-tabs-border-color;
   > li {

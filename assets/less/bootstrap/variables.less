@@ -6,12 +6,21 @@
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
+@primary:               rgb( 245, 192, 65 ); // Orange
+@primary-darker:        rgb( 255, 162, 0 );  // Darker Orange
+@secondary:             rgb( 113, 194, 229 ); // Light Blue
+@secondary-darker:      rgb( 0, 123, 194 );  // Darker Blue
+@tertiary:              rgb( 155, 200, 101 ); // Light Green
+@tertiary-darker:       rgb( 175, 229, 113 );  // Darker Blue
+
+@white:                 rgb( 254, 254, 254 );
 
 @gray-darker:            lighten(#000, 13.5%); // #222
 @gray-dark:              lighten(#000, 20%);   // #333
-@gray:                   lighten(#000, 33.5%); // #555
-@gray-light:             lighten(#000, 60%);   // #999
-@gray-lighter:           lighten(#000, 93.5%); // #eee
+@gray:                   rgb( 69, 69, 69 );    // #444
+@gray-light:             rgb( 137, 137, 137 );
+@gray-lighter:           rgb( 179, 179, 179 );
+@gray-lightest:          rgb( 230, 230, 230 );
 
 @brand-primary:         #428bca;
 @brand-success:         #5cb85c;
@@ -39,11 +48,12 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-sans-serif:  "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Adelle, Cambria, "Times New Roman", Times, serif;
+
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+@font-family-base:        @font-family-serif;
 
 @font-size-base:          14px;
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
@@ -137,29 +147,29 @@
 
 @btn-font-weight:                normal;
 
-@btn-default-color:              #333;
-@btn-default-bg:                 #fff;
-@btn-default-border:             #ccc;
+@btn-default-color:              @white;
+@btn-default-bg:                 @primary;
+@btn-default-bg-hover:           @primary-darker;
 
 @btn-primary-color:              #fff;
 @btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             darken(@btn-primary-bg, 5%);
+@btn-primary-bg-hover:           darken(@btn-primary-bg, 5%);
 
 @btn-success-color:              #fff;
 @btn-success-bg:                 @brand-success;
-@btn-success-border:             darken(@btn-success-bg, 5%);
+@btn-success-bg-hover:           darken(@btn-success-bg, 5%);
 
 @btn-info-color:                 #fff;
 @btn-info-bg:                    @brand-info;
-@btn-info-border:                darken(@btn-info-bg, 5%);
+@btn-info-bg-hover:              darken(@btn-info-bg, 5%);
 
 @btn-warning-color:              #fff;
 @btn-warning-bg:                 @brand-warning;
-@btn-warning-border:             darken(@btn-warning-bg, 5%);
+@btn-warning-bg-hover:           darken(@btn-warning-bg, 5%);
 
 @btn-danger-color:               #fff;
 @btn-danger-bg:                  @brand-danger;
-@btn-danger-border:              darken(@btn-danger-bg, 5%);
+@btn-danger-bg-hover:            darken(@btn-danger-bg, 5%);
 
 @btn-link-disabled-color:        @gray-light;
 
@@ -276,7 +286,7 @@
 
 // Large screen / wide desktop
 // Note: Deprecated @screen-lg and @screen-lg-desktop as of v3.0.1
-@screen-lg:                  1200px;
+@screen-lg:                  120000px; // Note: To disable, we have set it to 120,000px. This may break the site come year 2500.
 @screen-lg-min:              @screen-lg;
 @screen-lg-desktop:          @screen-lg-min;
 
