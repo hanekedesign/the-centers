@@ -72,7 +72,7 @@ add_action( 'after_switch_theme', 'create_database' );
 function addGlobalOption($name,$value) {
   global $wpdb, $variables_table;
   
-  return $wpdb->insert( $variables_table, array( 
+  $return = $wpdb->insert( $variables_table, array( 
     'created' => current_time('mysql'), 
     'updated' => current_time('mysql'),
     'name' => $name, 
@@ -82,18 +82,38 @@ function addGlobalOption($name,$value) {
 function updateGlobalOption($name,$value) {
   global $wpdb, $variables_table;
   
-  return $wpdb->update( $variables_table, 
+  $return  = $wpdb->update( $variables_table, 
     array('updated' => current_time('mysql'),
       'value' => $value ),
     array('name' => $name));
 }
 
 function addOrUpdateGlobalOption($name,$value) {
-  if (getGlobalOption($name) == NULL) {
+  if (!hasGlobalOption($name)) {
     addGlobalOption($name,$value);
   } else {
     updateGlobalOption($name,$value);
   }
+}
+
+function hasGlobalOption($name) {
+  global $wpdb, $variables_table;  
+  $query = $wpdb->prepare("SELECT * FROM $variables_table WHERE name = %s",$name);
+  $result = $wpdb->get_row($query);
+  return isset($result);
+}
+
+function getGlobalOptionsByPrefix($prefix) {
+  global $wpdb, $variables_table;  
+  $query = $wpdb->prepare("SELECT * FROM $variables_table WHERE name LIKE %s",$prefix."_%");
+  $result = $wpdb->get_results($query);
+  $titles = array();
+  
+  foreach ( $result as $result_i ) 
+  {
+      $titles[] = $result_i;
+  }
+  return $titles;
 }
 
 function getGlobalOption($name) {

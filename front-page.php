@@ -1,36 +1,54 @@
+<?php
+function generate_large_box($id) {
+  global $post;
+  $header = get_post_meta($post->ID, 'home_largebox_header_'.$id, TRUE)?:"";
+  $lineone = get_post_meta($post->ID, 'home_largebox_subheader_first_'.$id, TRUE)?:"";
+  $linetwo = get_post_meta($post->ID, 'home_largebox_subheader_second_'.$id, TRUE)?:"";
+  $image = get_post_meta($post->ID, 'home_largebox_header_image_'.$id, TRUE)?:0;
+
+  $colors = array("secondary", "tertiary", "primary");
+  $color = $colors[$id];
+  ?>
+      <div class="col-md-4">
+        <div class="home-box"> 
+          <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_src( $image , 'full' )[0]; ?>)"></div>
+          <div class="content">
+            <div class="upper"><?php echo $header; ?></div>
+            <div class="lower"><?php echo $lineone; ?><br/><?php echo $linetwo; ?></div>          
+          </div>
+          <div class="bottom <?php echo $color; ?>">+ Find out how</div>
+        </div>        
+      </div>
+  <?php
+}
+
+function generate_small_box($id) {
+  global $post;
+  $header = get_post_meta($post->ID, 'home_minibox_header_'.$id, TRUE)?:"";
+  $text = get_post_meta($post->ID, 'home_minibox_text_'.$id, TRUE)?:"";
+  $link = get_post_meta($post->ID, 'home_minibox_link_'.$id, TRUE)?:"";
+  $link_text = get_post_meta($post->ID, 'home_minibox_link_text_'.$id, TRUE)?:0;
+  $color = get_post_meta($post->ID, 'home_minibox_color_'.$id, TRUE)?:"primary";
+  ?>
+      <div class="col-md-3">
+        <a href="<?php echo $link; ?>" class="mini-box-link"><div class="mini-box <?php echo $color; ?>"> 
+          <div class="content">
+            <div class="upper"><?php echo $header; ?></div>
+            <div class="lower"><?php echo $text; ?></div>          
+          </div>
+          <div class="bottom">+ <?php echo $link_text; ?></div>
+        </div></a>       
+      </div>
+  <?php
+}
+
+?>
 <div class="colored-back primary home-one">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <div class="home-box"> 
-          <div class="image"></div>
-          <div class="content">
-            <div class="upper">How To Protect</div>
-            <div class="lower">Medicaid<br/> Eligibility</div>          
-          </div>
-          <div class="bottom secondary">+ Find out how</div>
-        </div>        
-      </div>
-      <div class="col-md-4">
-        <div class="home-box"> 
-          <div class="image"></div>
-          <div class="content">
-            <div class="upper">How To Protect</div>
-            <div class="lower">Disability<br/> Benefits</div>          
-          </div>
-          <div class="bottom tertiary">+ Find out how</div>
-        </div>       
-      </div>
-      <div class="col-md-4">
-        <div class="home-box"> 
-          <div class="image"></div>
-          <div class="content">
-            <div class="upper">How To Protect</div>
-            <div class="lower">Future<br/> Public Benefits</div>          
-          </div>
-          <div class="bottom primary">+ Find out how</div>
-        </div>       
-      </div>
+      <?php generate_large_box(0); ?>
+      <?php generate_large_box(1); ?>
+      <?php generate_large_box(2); ?>
     </div>
   </div>
 </div>
@@ -39,7 +57,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        We believe all people should lead secure and independent lives. We express this belief by empowering people to maximize their resources. We provide services that allow people to protect current and future public benefits eligibility and compliance.<br/><a href="#">+ Learn more about us</a>
+        <?php echo get_post_meta($post->ID, 'home_largebox_header_text', TRUE)?:""; ?><br/>
+        <a href="<?php echo get_post_meta($post->ID, 'home_largebox_header_link', TRUE)?:""; ?>">+ <?php echo get_post_meta($post->ID, 'home_largebox_header_link_text', TRUE)?:""; ?></a>
       </div>
     </div>
   </div>
@@ -48,42 +67,10 @@
 <div class="colored-back white home-three">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="home-box-mini secondary"> 
-          <div class="content">
-            <div class="upper">Frequently Asked Questions</div>
-            <div class="lower">What are Special Needs Trusts?</div>          
-          </div>
-          <div class="bottom">+ Learn more</div>
-        </div>       
-      </div>
-      <div class="col-md-3">
-        <div class="home-box-mini tertiary"> 
-          <div class="content">
-            <div class="upper">Recent News</div>
-            <div class="lower">Title of a recent news item here</div>          
-          </div>
-          <div class="bottom">+ Read article</div>
-        </div>       
-      </div>
-      <div class="col-md-3">
-        <div class="home-box-mini primary"> 
-          <div class="content">
-            <div class="upper">Name of the Linked Page</div>
-            <div class="lower">An intriguing lead in goes in this box</div>          
-          </div>
-          <div class="bottom">+ Learn more</div>
-        </div>       
-      </div>
-      <div class="col-md-3">
-        <div class="home-box-mini secondary"> 
-          <div class="content">
-            <div class="upper">Name of the Linked Page</div>
-            <div class="lower">An intriguing lead in goes in this box</div>          
-          </div>
-          <div class="bottom">+ Read article</div>
-        </div>       
-      </div>
+      <?php generate_small_box(0); ?>
+      <?php generate_small_box(1); ?>
+      <?php generate_small_box(2); ?>
+      <?php generate_small_box(3); ?>
     </div>
   </div>
 </div>
@@ -93,13 +80,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="flow">
-          <h3>A Headline of text goes here.</h3>
-          <p>Vice incididunt aesthetic hoodie XOXO ad PBR&amp;B, delectus kogi Truffaut irure Carles. Occaecat excepteur eiusmod authentic High Life Helvetica delectus. Williamsburg exercitation accusamus commodo. </p>
-          <button class="btn btn-default">Contact Us</button>
+          <h3><?php echo get_post_meta($post->ID, 'home_footer_header', TRUE)?:""; ?></h3>
+          <p><?php echo get_post_meta($post->ID, 'home_footer_content', TRUE)?:""; ?></p>
+          <a href="<?php echo get_post_meta($post->ID, 'home_footer_button_link', TRUE)?:""; ?>"><button class="btn btn-default"><?php echo get_post_meta($post->ID, 'home_footer_button_text', TRUE)?:""; ?></button></a>
         </div>
       </div>
       <div class="col-md-6">
-        <div class="image"></div>
+        <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )[0]; ?>)"></div>
       </div>
     </div>
   </div>

@@ -80,10 +80,9 @@ body {
       background-clip: content-box;
     }
   }
-  &.image-banner {
+  &.image-banner, &.text-banner {
     .text {
       color: @white;
-      padding: 20px;
       h1 { 
         padding: 0;
         margin: 0;
@@ -96,13 +95,25 @@ body {
         font-size: 14px;
         line-height: 1.85;
         text-align: left;
+        margin: 0;
       }
+    }
+  }
+  &.image-banner {
+    .text {
+      padding: 20px;
     }
     .image {
       width: 100%;
       height: 250px;
+      background-position: center;
       display: block;
-      .DEV-imagestripe();
+      background-size: cover;
+    }
+  }
+  &.text-banner {
+    .text {
+      padding: 30px 0;
     }
   }
 }
@@ -141,9 +152,10 @@ body {
     margin-bottom: 40px;
     color: @white;
     .image {
-      .DEV-imagestripe();
       width: 100%;
       height: 350px;
+      background-position: center;
+      background-size: cover;
     }
     .container {
       background-color: @gray;
@@ -220,10 +232,8 @@ body {
   .image {
     width: 100%;
     height: 200px;
-    
-    /* TODO: Remove before production */
-    .DEV-imagestripe();
-    /* TODO: End */
+    background-position: center;
+    background-size: cover;
   }
   .content {
     padding: 10px 0;
@@ -260,7 +270,31 @@ body {
   }
 }
 
-.home-box-mini {
+.mini-box-link {
+  text-decoration: none !important;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.wide-box {
+  height: 198px;
+  background-color: @white;
+  .header {
+    line-height: 38px;
+    font-size: 28px;
+    color: @primary;
+    font-style: italic;
+    text-align: center;
+    font-weight: 800;
+    padding: 20px 30px;
+  }
+  button {
+    margin: 20px 20px;  
+  }
+}
+
+.mini-box {
   .content {
     padding: 15px;
     color: @white;
@@ -310,7 +344,14 @@ body {
       background-color: @tertiary-darker;  
     }
   }
-
+  &.gray {
+    .bottom {
+      background-color: @gray;
+    }
+    .content {
+      background-color: @gray-light;  
+    }
+  }
 }
 
 /* ==========================================================================
@@ -348,6 +389,26 @@ body {
   }
 }
 
+.faq {
+  .accordion {
+    padding: 0 20px;
+    margin: 2px 0;
+    background-color: @gray-lightest;
+    .title {
+      font-size: 24px;
+      color: @gray-darker;
+      line-height: 46px;
+      cursor: pointer;
+      &:hover {
+        color: @secondary;
+      }
+    }
+    .body {
+      padding-bottom: 10px; 
+    }
+  }
+}
+
 /* ==========================================================================
    Sidebar
    ========================================================================== */
@@ -372,7 +433,21 @@ body {
 
 .contact-sidebar {
   .header {
-    background-color: @secondary;
+    &.primary {
+      background-color: @primary;    
+    }
+    &.secondary {
+      background-color: @secondary;    
+    }
+    &.tertiary {
+      background-color: @tertiary;    
+    }
+    &.gray {
+      background-color: @gray-lightest;    
+    }
+    &.container {
+      background-clip: content-box;
+    }
     font-size: 24px;
     font-style: italic;
     font-weight: 200;
@@ -439,6 +514,11 @@ body {
 /* ==========================================================================
    Footer
    ========================================================================== */
+
+.footer-banner {
+  margin-top: 50px;
+  padding: 30px 0;
+}
 
 form.newsletter {
   margin-top: 25px;

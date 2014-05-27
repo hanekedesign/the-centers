@@ -5,6 +5,26 @@
 // Because WP uses a framework that neess $.
 _$ = jQuery;
 
+var set_field = function(item,name,value,overwrite) {
+  if (_$('input[type="hidden"][name="'+name+'[]"]',_$(item)).length > 0) {
+    if (value!=null) {
+      if (overwrite || _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).val() == null) {
+        _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).val(value);
+      }
+    }
+  } else {
+    _$(item).append('<input type="hidden" name="'+name+'[]" value="'+(value||"")+'">');
+  }
+};
+
+var clear_field = function(item,name) {
+  _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).remove();
+};
+
+var get_field = function(item,name) {
+  return _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).val();
+};
+
 _$(function() {
   // Tag Init
   var init_sorty = function() {
@@ -60,7 +80,9 @@ _$(function() {
     }
 
     _$('sl\\:item',_$(host)).bind('changeLabel',function(event,name) {
+      var det = _$(this).children().detach();
       _$(this).text(name);
+      _$(this).append(det);
     });
     
     _$('sl\\:item',_$(host)).bind('setValue',function(event,field,value) {
@@ -111,26 +133,6 @@ _$(function() {
         set_field(_$(item),form[f],defaults[f],false);
       }
     });
-  };
-  
-  var set_field = function(item,name,value,overwrite) {
-    if (_$('input[type="hidden"][name="'+name+'[]"]',_$(item)).length > 0) {
-      if (value!=null) {
-        if (overwrite || _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).val() == null) {
-          _$('input[type="hidden"][name="'+name+'[]"]',_$(item)).val(value);
-        }
-      }
-    } else {
-      _$(item).append('<input type="hidden" name="'+name+'[]" value="'+(value||"")+'">');
-    }
-  };
-  
-  var clear_field = function(item,name) {
-    _$('input[type="hidden"][name="'+name+'"][]',_$(item)).remove();
-  };
-
-  var get_field = function(item,name) {
-    _$('input[type="hidden"][name="'+name+'"][]',_$(item)).remove();
   };
   
   var start_drag = function(item) {

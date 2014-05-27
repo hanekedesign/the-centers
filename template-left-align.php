@@ -3,6 +3,7 @@
 Template Name: Left-Aligned Template
 */
 include_once locate_template('/lib/advance-edit-toolkit.php');
+$align = 0;
 ?>
 
 <div class="container page">

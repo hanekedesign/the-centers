@@ -1,3 +1,8 @@
+<?php
+  include_once locate_template('/lib/advance-edit-toolkit.php');
+  generate_footer();
+?>
+
 <footer class="foot-contact" role="contentinfo">
   <div class="container">
     <div class="row">
@@ -56,6 +61,5 @@
     </div>
   </div>
 </footer>
-
 
 <?php wp_footer(); ?>

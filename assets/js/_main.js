@@ -59,5 +59,13 @@ var UTIL = {
 };
 
 $(document).ready(UTIL.loadEvents);
-
+  
+$('.accordion .body').hide(0);
+$('.accordion .title').click(function() {
+  $('.body',$(this).parent().parent()).slideUp('fast');
+  $('.body',$(this).parent()).slideDown('fast');
+});
+  
 })(jQuery); // Fully reference jQuery after this point.
+
+

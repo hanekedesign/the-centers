@@ -1,5 +1,82 @@
 @import "bootstrap/variables.less";
 
+/* Home-specifics */
+.home-box {
+  input {
+    width: 100%;
+  }
+  .large-box-editor {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+    .imgsel {
+      border-left: 0;
+      border-top: 0;
+      border-right: 0;    
+    }
+    .body {
+      min-height: 20px;
+    }
+    .footer {
+      min-height: 20px;
+      box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+      &.item_0 {
+        background-color: rgb( 111, 193, 229 );
+      }
+      &.item_1 {
+        background-color: rgb( 155, 199, 100 );
+      }
+      &.item_2 {
+        background-color: rgb( 245, 192, 65  );
+      }
+    }
+    input {
+      border: 0;
+      margin: 0;
+      width: 100%;
+      box-shadow: none;
+      background: transparent;
+      text-align: center;
+      box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+      &.header {
+        font-size: 20px;
+        &::-webkit-input-placeholder { line-height: 30px; }
+        &:-moz-placeholder { line-height: 30px; }
+        &::-moz-placeholder { line-height: 30px; }
+        &:-ms-input-placeholder { line-height: 30px; }
+      }
+      &.subheader {
+        font-size: 30px;
+        &::-webkit-input-placeholder { line-height: 40px; }
+        &:-moz-placeholder { line-height: 40px; }
+        &::-moz-placeholder { line-height: 40px; }
+        &:-ms-input-placeholder { line-height: 40px; }
+      }
+    }
+  }
+  textarea { width: 100%; }
+}
+/* End home-specifics */
+
+.small-box-editor {
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+  -webkit-box-shadow: inset 0 2px 5px -3px rgba(0,0,0,0.5);
+  select, input {
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    border-bottom: rgba(0,0,0,0.2) !important;
+    background-color: @white !important;
+  }
+  input {
+  
+  }
+}
+
 textarea {
   resize: vertical;
   min-height: 100px;
@@ -228,6 +305,12 @@ textarea {
   position: relative;
   select {
     text-indent: 30px !important;
+    width: 100%;
+    height: 33px;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    border-radius: 3px;
   }
   .color-box {
     position: absolute;
@@ -256,6 +339,32 @@ textarea {
     top: 8px;
     right: 8px;
     text-shadow: 0 2px 5px -3px rgba(0,0,0,.5);  
+  }
+}
+
+.imgsel {
+  width: 100%;
+  height: 100%;
+  min-height: 130px;
+  background-size: cover;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+  position: relative;
+  cursor: pointer;
+  background-position: center;
+  &::after {
+    content: 'Click to Change Image';
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    border: 1px solid #bdbdbd;
+    background-color: #f0f0f0;
+    box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,0.08);
+  }
+  &:hover::after {
+    border-color: #555;
   }
 }
 
@@ -288,6 +397,7 @@ sl\:sortylist.standard {
     line-height: 35px;
     cursor: pointer;
     margin: 5px;
+    overflow: hidden;
   }
   
   sl\:item, sl\:controls > * {
@@ -302,6 +412,7 @@ sl\:sortylist.standard {
     line-height: 35px;
     cursor: pointer;
     margin: 5px;
+    overflow: hidden;
   }
 }
 
