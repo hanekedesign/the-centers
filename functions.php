@@ -123,12 +123,18 @@ function getGlobalOption($name) {
   return stripslashes(isset($result->value)?$result->value:NULL);
 }
 
-// This fixes the fact that some genius at WordPress decided it's okay to not have a set order for this
-// And saving doesn't work properly because of it.
 function grab_save() {
   if ( isset( $_POST['post_update_file'] ) ) { 
     require_once locate_template('/lib/'.$_POST['post_update_file']);
   }
 } 
 add_action('save_post', 'grab_save');
+
+add_shortcode('subbox',function($attr,$content) {
+  return '<div class="subbox">' . do_shortcode($content) . '</div>';
+});
+add_shortcode('header',function($attr,$content) {
+  return '<h2>' . do_shortcode($content) . '</h2>';
+});
+
 

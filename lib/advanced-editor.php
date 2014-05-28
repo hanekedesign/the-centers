@@ -33,6 +33,7 @@ function render_header_box() {
             <option value="primary" data-color="rgb(245,192,65)"<?php if($sel_color=="primary") echo " selected"?>>Primary</option>
             <option value="secondary" data-color="rgb(111,193,228)"<?php if($sel_color=="secondary") echo " selected"?>>Secondary</option>
             <option value="tertiary" data-color="rgb(155,199,100)"<?php if($sel_color=="tertiary") echo " selected"?>>Tertiary</option>
+            <option value="gray-lighter" data-color="rgb(230,230,230)"<?php if($sel_color=="gray-lighter") echo " selected"?>>Light Gray</option>
             <option value="gray" data-color="rgb(191,191,191)"<?php if($sel_color=="gray") echo " selected"?>>Gray</option>
           </select>          
           <div class="color-box"></div>
@@ -47,7 +48,8 @@ function render_header_box() {
       <div id="imagetext" class="editor">
         <div class="wp-col-4">
           <p><strong>Image</strong></p>
-          <div class="imgsel" style="background-image: url(<?php echo wp_get_attachment_image_src( $header_image , 'full' )[0]; ?>)">
+          <?php $image = wp_get_attachment_image_src( $header_image , 'full' )?:array(""); ?>
+          <div class="imgsel" style="background-image: url(<?php echo $image[0]; ?>)">
             <input type="hidden" id="advedit_header_image" name="advedit_header_image" value="<?php echo $header_image ?>">
           </div>
         </div>
@@ -125,8 +127,8 @@ function render_faq_editor($col) {
   /*$header = get_post_meta( $post->ID, 'advedit_faq_root_title', true )?:"";
   $body = get_post_meta( $post->ID, 'advedit_faq_root_body', true )?:"";*/
 
-  $titles = get_post_meta( $post->ID, 'advedit_faq_question', true )?:[];
-  $texts = get_post_meta( $post->ID, 'advedit_faq_answer', true )?:[];
+  $titles = get_post_meta( $post->ID, 'advedit_faq_question', true )?:array();
+  $texts = get_post_meta( $post->ID, 'advedit_faq_answer', true )?:array();
 
   ?>    
       <div class="wp-col-<?php echo $col; ?>">
@@ -187,14 +189,14 @@ function render_sidebar($col) {
   // Image Mode Stuff
   $image_blurb = get_post_meta( $post->ID, 'advedit_image_blurb', true );
 
+  $sidebar_siblm = get_post_meta( $post->ID, 'advedit_sidebar_sibling_menu', true )?:false;
   $sidebar_image = get_post_meta( $post->ID, 'advedit_sidebar_image', true )?:0;
-
   $sidebar_color = get_post_meta( $post->ID, 'advedit_sidebar_form_color', true )?:"primary";
 
-  $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:[];
-  $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:[];
-  $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:[];
-  $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:[];
+  $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
+  $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:array();
+  $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:array();
+  $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:array();
   $sidebar_header = get_post_meta( $post->ID, 'advedit_sidebar_form_header', true)?:"";
   ?>    
       <div class="wp-col-<?php echo $col; ?> meta-box-sortables ui-sortable">
@@ -207,14 +209,16 @@ function render_sidebar($col) {
               <option value="1"<?php if ($panelmode==1) echo " selected";?>>Photo + Text</option>
               <option value="2"<?php if ($panelmode==2) echo " selected";?>>Form</option>
               <option value="3"<?php if ($panelmode==3) echo " selected";?>>Widget</option>
-            </select>            
+            </select><br/><br/>            
+            <input type="checkbox" name="advedt_siblemenu" <?php if ($sidebar_siblm) echo "checked"?>><label for="advedt_siblemenu">Enable Sibling Menu</label>
             <div class="sidebar-ops" data-id="0">
               <p><strong>Panel Configuration</strong></p>
               <p>This panel does not contain any configurable options.</p>
             </div>
             <div class="sidebar-ops" data-id="1">
+              <?php $image = wp_get_attachment_image_src( $sidebar_image , 'full' )?:Array(''); ?>
               <p><strong>Photo</strong></p>
-              <div class="imgsel" style="background-image: url(<?php echo wp_get_attachment_image_src( $sidebar_image , 'full' )[0]; ?>)">
+              <div class="imgsel" style="background-image: url(<?php echo $image[0]; ?>)">
                 <input type="hidden" name="advedit_sidebar_image" val="<?php echo $sidebar_image;?>">
               </div>
               <p><strong>Text</strong></p>
@@ -382,6 +386,7 @@ function create_mini_editor($id) {
   $link = get_post_meta($post->ID, 'advedt_minibox_link_'.$id, TRUE)?:"";
   $link_text = get_post_meta($post->ID, 'advedt_minibox_link_text_'.$id, TRUE)?:"";
   $color = get_post_meta($post->ID, 'advedt_minibox_color_'.$id, TRUE)?:"";
+    
   ?>
       <div class="wp-col-3">
         <div class="small-box-editor">

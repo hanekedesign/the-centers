@@ -13,6 +13,9 @@ body {
   border-top: 5px solid @secondary;
 }
 
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
 
 
 /* ==========================================================================
@@ -64,6 +67,7 @@ body {
 .subbanner {
   overflow: hidden;
   &.color, .color {
+    color: @white;
     &.primary {
       background-color: @primary;    
     }
@@ -73,8 +77,13 @@ body {
     &.tertiary {
       background-color: @tertiary;    
     }
-    &.gray {
+    &.gray-lighter {
+      color: @gray;
       background-color: @gray-lightest;    
+    }
+    &.gray {
+      color: @gray;
+      background-color: @gray-lighter;    
     }
     &.container {
       background-clip: content-box;
@@ -82,7 +91,6 @@ body {
   }
   &.image-banner, &.text-banner {
     .text {
-      color: @white;
       h1 { 
         padding: 0;
         margin: 0;
@@ -208,6 +216,42 @@ body {
     background: -ms-repeating-linear-gradient(@grad);
     background: repeating-linear-gradient(@grad);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=1 );
+}
+.document-col {
+  border: 1px solid @gray-lightest;
+  margin: 10px 0;
+  .document-row {
+    .document-box {
+      background-color: @gray-lightest;
+      padding: 20px;
+      &::after {
+        content: " ";
+        display: table;
+        clear: both;
+      }   
+    }
+    .document-entries {
+      padding: 10px 0;
+      margin-left: -15px;
+      a {
+        font-size: 14px;        
+        display: block; 
+        font-family: @font-family-sans-serif;
+        line-height: 28px;
+      }
+    }
+  }
+  .button {
+    display: inline-block;
+    color: @white;
+    float: right;
+    background-color: @secondary-darker;
+    padding: 5px 20px;
+    margin-top: 10px;
+    &::before {
+      content: '+ ';
+    }    
+  } 
 }
 
 .container.page {
@@ -409,9 +453,68 @@ body {
   }
 }
 
+
+/* ==========================================================================
+   Short Codes
+   ========================================================================== */
+
+.subbox {
+  padding: 24px;
+  background-color: @gray-lightest;
+  h2 {
+    font-size: 28px;
+    color: @gray;
+    line-height: 38px;
+    margin: 0;
+  }
+  p {
+    font-size: 14px;
+    line-height: 28px;
+    color: @gray;
+    a {
+      color: @secondary;
+      text-decoration: none;
+      font-weight: 700;
+      font-style: italic;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 /* ==========================================================================
    Sidebar
    ========================================================================== */
+
+.sidebar-menu {
+  margin-bottom: 10px;
+  * {
+    display: block;
+    width: 100%;
+    margin-bottom: 2px;
+    color: @white;
+    font-size: 18px;
+    padding: 5px 15px;
+  }
+  .header {
+    background-color:  @gray;
+  }
+  .entry.active {
+    background-color: @secondary-darker;    
+  }
+  
+  a.entry {
+    background-color: @gray-lighter;
+    &:hover {
+      background-color: @secondary;
+    }
+  }
+  a:hover {
+    color: @white;
+    text-decoration: none;
+  }
+}
 
 .sidebar { }
 
@@ -503,6 +606,93 @@ body {
    Posts
    ========================================================================== */
 
+.blog-items {
+  margin: 20px 0;
+  .item {
+    min-height: 200px;
+    position: relative;
+    .title {
+      font-size: 18px;
+      color: @secondary;
+      font-weight: 700;
+      line-height: 22px;
+    }
+    .category {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 22px;
+      a {
+        color: @secondary;
+      }
+      a:not(:last-child)::after {
+        display: inline-block;
+        content: ', ';
+      }
+    }
+    .date {
+      display: inline-block;
+      color: @gray-light;
+    }
+    .excerpt {
+      font-size: 14px;
+      font-family: @font-family-sans-serif;
+    }
+    .right { 
+      float: right;
+      * {
+        display: block;
+        text-align: right;
+      }
+    }
+    .link {
+      color: @secondary;
+      clear: both;
+      font-style: italic;
+      line-height: 22px;
+      font-size: 14px;
+      &::before {
+        content: '+ ';
+      }
+      &:hover {}
+    }
+    hr {
+      position: absolute;
+      bottom: 0;
+      margin: 10px 0px;
+      height: 1px;
+      border: 0;
+      width: 100%;
+      background-color: @gray-lightest;
+    }
+  }
+}
+
+.page-body {
+  h2 {
+    font-size: 28px;
+    color: @gray;
+    font-weight: 700;
+    font-style: italic;
+  }
+  p, ul, li {
+    font-size: 14px;
+    font-family: @font-family-sans-serif;
+    line-height: 24px;
+    img {
+      margin: 20px 30px;
+      &.alignleft {
+        margin-left: 0;
+      }
+    }
+    a {
+      color: @secondary;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
 .hentry header { }
 .hentry time { }
 .hentry .byline { }

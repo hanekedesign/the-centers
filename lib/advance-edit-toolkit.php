@@ -39,6 +39,31 @@
     // Get our sidebar type
     $panelmode = get_post_meta( $post->ID, 'advedit_panelmode', true );
 
+    // Do a sibling panel?
+    $sidebar_siblm = get_post_meta( $post->ID, 'advedit_sidebar_sibling_menu', true )?:false;
+    $sidetra = "";
+    
+    if ($sidebar_siblm) {
+      $parent = get_post($post->post_parent);
+      $post_args =  array(
+        'post_parent' => $post->ID,
+        'post_type'   => 'page', 
+        'posts_per_page' => -1,
+        'post_status' => 'publish' );
+      $children = get_children($post_args);
+      ob_start();
+      ?>
+          <div class="sidebar-menu">
+            <div class="header"><?php echo $parent->post_title; ?></div>
+            <div class="entry active"><?php echo $post->post_title; ?></div>
+            <?php foreach ($children as $child) { ?>
+            <a href="<?php echo get_permalink($child->ID); ?>" class="entry"><?php echo $child->post_title; ?></a>
+            <?php } ?>
+          </div>
+      <?php
+      $sidetra = ob_get_clean();
+    }
+    
     switch ($panelmode) {
       case 0:
         break;
@@ -48,6 +73,7 @@
         $sidebar_image_url = wp_get_attachment_image_src( $sidebar_image , 'full' )?:Array("");
         ?>
         <aside class="col-sm-4" role="complementary">
+          <?php echo $sidetra; ?>
           <div class="photo-sidebar">
             <div class="blurb"><?php echo $blurb; ?></div>
             <div class="photo" style="background-image: url(<?php echo $sidebar_image_url[0]; ?>)"></div>
@@ -60,6 +86,7 @@
         $color = get_post_meta( $post->ID, 'advedit_sidebar_form_color', true)?:"";
         ?>
         <aside class="col-sm-4" role="complementary">
+          <?php echo $sidetra; ?>
           <div class="contact-sidebar">
             <div class="header <?php echo $color; ?>"><?php echo $header; ?></div>
             <div class="form"><?php generate_form(); ?></div>

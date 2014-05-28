@@ -32,6 +32,7 @@
   update_post_meta( $post_id, 'advedit_sidebar_form_name', $_POST['sidebar_form_name']?:"" );
   update_post_meta( $post_id, 'advedit_sidebar_form_placeholder', $_POST['sidebar_form_placeholder']?:"" );
   update_post_meta( $post_id, 'advedit_sidebar_image', $_POST['advedit_sidebar_image']?:"" );
+  update_post_meta( $post_id, 'advedit_sidebar_sibling_menu', $_POST['advedt_siblemenu']?:false );
 
   update_post_meta( $post_id, 'advedit_header_mode', $_POST['advedit_header_mode']?:"");
   update_post_meta( $post_id, 'advedit_header_color', $_POST['advedit_header_color']?:"");
@@ -55,7 +56,7 @@
   update_post_meta( $post_id, 'advedt_widebox_button_two', $_POST['advedt_widebox_button_two']?:"");
 
   for ($i = 0; $i < 4; $i++) {
-    if (!isset($_POST['advedt_minibox_header_'.$i])) continue;
+    if (!isset($_POST['advedt_minibox_text_'.$i])) {continue;};
     update_post_meta( $post_id, 'advedt_minibox_header_'.$i, $_POST['advedt_minibox_header_'.$i]?:"");
     update_post_meta( $post_id, 'advedt_minibox_text_'.$i, $_POST['advedt_minibox_text_'.$i]?:"");
     update_post_meta( $post_id, 'advedt_minibox_link_'.$i, $_POST['advedt_minibox_link_'.$i]?:"");

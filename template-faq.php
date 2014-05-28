@@ -5,8 +5,8 @@ Template Name: FAQ Template
 include_once locate_template('/lib/advance-edit-toolkit.php');
 $header = get_post_meta( $post->ID, 'advedit_faq_root_title', true )?:"";
 $body = get_post_meta( $post->ID, 'advedit_faq_root_body', true )?:"";
-$titles = get_post_meta( $post->ID, 'advedit_faq_question', true )?:[];
-$texts = get_post_meta( $post->ID, 'advedit_faq_answer', true )?:[];
+$titles = get_post_meta( $post->ID, 'advedit_faq_question', true )?:array();
+$texts = get_post_meta( $post->ID, 'advedit_faq_answer', true )?:array();
 ?>
 
 <div class="container page">

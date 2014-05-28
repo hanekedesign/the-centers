@@ -53,7 +53,8 @@ function home_meta() {
         <p>Button Link</p>
         <input type="text" name="home_footer_button_link" value="<?php echo get_post_meta($post->ID, 'home_footer_button_link', TRUE)?:"" ?>">
       </div>
-      <div class="wp-col-6 imgsel" style="background-image: url(<?php echo wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )[0]; ?>)">
+      <?php $image = wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )?:Array(); ?>
+      <div class="wp-col-6 imgsel" style="background-image: url(<?php echo $image[0]; ?>)">
         <input type="hidden" name="home_footer_image"  value="<?php echo get_post_meta($post->ID, 'home_footer_image', TRUE)?:0; ?>">
       </div>
     </div>
@@ -101,10 +102,11 @@ function create_large_editor($id) {
   $lineone = get_post_meta($post->ID, 'home_largebox_subheader_first_'.$id, TRUE)?:"";
   $linetwo = get_post_meta($post->ID, 'home_largebox_subheader_second_'.$id, TRUE)?:"";
   $image = get_post_meta($post->ID, 'home_largebox_header_image_'.$id, TRUE)?:0;
+  $imgsrc = wp_get_attachment_image_src( $image , 'full' )?:array("");
   ?>
       <div class="wp-col-4">
         <div class="large-box-editor">
-          <div class="imgsel image" style="background-image: url(<?php echo wp_get_attachment_image_src( $image , 'full' )[0]; ?>)">
+          <div class="imgsel image" style="background-image: url(<?php echo $imgsrc[0]; ?>)">
             <input name="home_largebox_header_image_<?php echo $id; ?>" type="hidden" value="<?php echo $image; ?>">
           </div>
           <div class="body">
