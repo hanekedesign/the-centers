@@ -1,11 +1,11 @@
 <?php     
   function generate_form() {
     global $post;
-    $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:[];
-    $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:[];
-    $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:[];
-    $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:[];
-    $sidebar_value = get_post_meta( $post->ID, 'advedit_sidebar_form_value', true )?:[];
+    $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
+    $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:array();
+    $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:array();
+    $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:array();
+    $sidebar_value = get_post_meta( $post->ID, 'advedit_sidebar_form_value', true )?:array();
 
     for ($i = 0; $i < count($sidebar_types); $i++) {
       switch ($sidebar_types[$i]) {
@@ -45,11 +45,12 @@
       case 1:
         $blurb = get_post_meta( $post->ID, 'advedit_image_blurb', true );
         $sidebar_image = get_post_meta( $post->ID, 'advedit_sidebar_image', true );
+        $sidebar_image_url = wp_get_attachment_image_src( $sidebar_image , 'full' )?:Array("");
         ?>
         <aside class="col-sm-4" role="complementary">
           <div class="photo-sidebar">
             <div class="blurb"><?php echo $blurb; ?></div>
-            <div class="photo" style="background-image: url(<?php echo wp_get_attachment_image_src( $sidebar_image , 'full' )[0]; ?>)"></div>
+            <div class="photo" style="background-image: url(<?php echo $sidebar_image_url[0]; ?>)"></div>
           </div>
         </aside>
         <?php
@@ -91,7 +92,8 @@
         $title = get_post_meta($post->ID, 'advedit_header_title', TRUE)?:'';
         $text = get_post_meta($post->ID, 'advedit_header_text', TRUE)?:'';
         $image = get_post_meta($post->ID, 'advedit_header_image', TRUE)?:0;
-      
+        $image_url = wp_get_attachment_image_src( $image , 'full' )?:Array("");
+
         ob_start();?>
               <div class="col-xs-6">
                 <div class="text">
@@ -102,7 +104,7 @@
         <?php $text_content = ob_get_clean();
         ob_start();?>
               <div class="col-xs-6">
-                <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_src( $image , 'full' )[0]; ?>)"></div>
+                <div class="image" style="background-image: url(<?php echo $image_url[0]; ?>)"></div>
               </div>
         <?php $image_content = ob_get_clean(); ?>
         <div class="subbanner image-banner color gray">
@@ -149,13 +151,13 @@
     return $headermode;
   }
 
-  function generate_small_box($id) {
+  function generate_small_box($root,$id) {
     global $post;
-    $header = get_post_meta($post->ID, 'advedt_minibox_header_'.$id, TRUE)?:"";
-    $text = get_post_meta($post->ID, 'advedt_minibox_text_'.$id, TRUE)?:"";
-    $link = get_post_meta($post->ID, 'advedt_minibox_link_'.$id, TRUE)?:"";
-    $link_text = get_post_meta($post->ID, 'advedt_minibox_link_text_'.$id, TRUE)?:0;
-    $color = get_post_meta($post->ID, 'advedt_minibox_color_'.$id, TRUE)?:"primary";
+    $header = get_post_meta($post->ID, $root.'_minibox_header_'.$id, TRUE)?:"";
+    $text = get_post_meta($post->ID, $root.'_minibox_text_'.$id, TRUE)?:"";
+    $link = get_post_meta($post->ID, $root.'_minibox_link_'.$id, TRUE)?:"";
+    $link_text = get_post_meta($post->ID, $root.'_minibox_link_text_'.$id, TRUE)?:0;
+    $color = get_post_meta($post->ID, $root.'_minibox_color_'.$id, TRUE)?:"primary";
     ?>
         <div class="col-md-3">
           <a href="<?php echo $link; ?>" class="mini-box-link"><div class="mini-box <?php echo $color; ?>"> 
@@ -181,8 +183,8 @@
         <div class="subbanner footer-banner color gray">
           <div class="container">              
             <div class="row">
-              <?php generate_small_box(0); ?>
-              <?php generate_small_box(1); ?>
+              <?php generate_small_box("advedt",0); ?>
+              <?php generate_small_box("advedt",1); ?>
               <div class="col-xs-6">
                 <div class="wide-box">
                   <div class="header">
@@ -206,10 +208,10 @@
         <div class="subbanner footer-banner color gray">
           <div class="container">              
             <div class="row">
-              <?php generate_small_box(0); ?>
-              <?php generate_small_box(1); ?>
-              <?php generate_small_box(2); ?>
-              <?php generate_small_box(3); ?>
+              <?php generate_small_box("advedt",0); ?>
+              <?php generate_small_box("advedt",1); ?>
+              <?php generate_small_box("advedt",2); ?>
+              <?php generate_small_box("advedt",3); ?>
             </div>
           </div>
         </div>

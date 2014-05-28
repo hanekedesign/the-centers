@@ -5,13 +5,13 @@ function generate_large_box($id) {
   $lineone = get_post_meta($post->ID, 'home_largebox_subheader_first_'.$id, TRUE)?:"";
   $linetwo = get_post_meta($post->ID, 'home_largebox_subheader_second_'.$id, TRUE)?:"";
   $image = get_post_meta($post->ID, 'home_largebox_header_image_'.$id, TRUE)?:0;
-
+  $image_src = wp_get_attachment_image_src( $image , 'full' )?:Array("");
   $colors = array("secondary", "tertiary", "primary");
   $color = $colors[$id];
   ?>
       <div class="col-md-4">
         <div class="home-box"> 
-          <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_src( $image , 'full' )[0]; ?>)"></div>
+          <div class="image" style="background-image: url(<?php echo $image_src[0]; ?>)"></div>
           <div class="content">
             <div class="upper"><?php echo $header; ?></div>
             <div class="lower"><?php echo $lineone; ?><br/><?php echo $linetwo; ?></div>          
@@ -22,25 +22,6 @@ function generate_large_box($id) {
   <?php
 }
 
-function generate_small_box($id) {
-  global $post;
-  $header = get_post_meta($post->ID, 'home_minibox_header_'.$id, TRUE)?:"";
-  $text = get_post_meta($post->ID, 'home_minibox_text_'.$id, TRUE)?:"";
-  $link = get_post_meta($post->ID, 'home_minibox_link_'.$id, TRUE)?:"";
-  $link_text = get_post_meta($post->ID, 'home_minibox_link_text_'.$id, TRUE)?:0;
-  $color = get_post_meta($post->ID, 'home_minibox_color_'.$id, TRUE)?:"primary";
-  ?>
-      <div class="col-md-3">
-        <a href="<?php echo $link; ?>" class="mini-box-link"><div class="mini-box <?php echo $color; ?>"> 
-          <div class="content">
-            <div class="upper"><?php echo $header; ?></div>
-            <div class="lower"><?php echo $text; ?></div>          
-          </div>
-          <div class="bottom">+ <?php echo $link_text; ?></div>
-        </div></a>       
-      </div>
-  <?php
-}
 
 ?>
 <div class="colored-back primary home-one">
@@ -67,10 +48,10 @@ function generate_small_box($id) {
 <div class="colored-back white home-three">
   <div class="container">
     <div class="row">
-      <?php generate_small_box(0); ?>
-      <?php generate_small_box(1); ?>
-      <?php generate_small_box(2); ?>
-      <?php generate_small_box(3); ?>
+      <?php generate_small_box("home",0); ?>
+      <?php generate_small_box("home",1); ?>
+      <?php generate_small_box("home",2); ?>
+      <?php generate_small_box("home",3); ?>
     </div>
   </div>
 </div>
@@ -86,7 +67,8 @@ function generate_small_box($id) {
         </div>
       </div>
       <div class="col-md-6">
-        <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )[0]; ?>)"></div>
+        <?php $image_url = wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )?:Array(""); ?>
+        <div class="image" style="background-image: url(<?php echo $image_url[0]; ?>)"></div>
       </div>
     </div>
   </div>
