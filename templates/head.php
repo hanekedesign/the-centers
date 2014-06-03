@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php wp_title('|', true, 'right'); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="msvalidate.01" content="00489E51BC1A707C65D87F30B88AA189" /> 
+  <meta name="google-site-verification" content="YseGklCTG3Xw8-0akl3SCb2KizedCjbWCiY-mZsWKiA" /> 
   <?php wp_head(); ?>
 
   <script type="text/javascript" src="//use.typekit.net/fny7rpa.js"></script>

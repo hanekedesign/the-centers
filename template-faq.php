@@ -19,7 +19,7 @@ $texts = get_post_meta( $post->ID, 'advedit_faq_answer', true )?:array();
           ?>
             <div class="accordion">
               <div class="title"><?php echo $titles[$i]?:"text"; ?></div>
-              <div class="body"><?php echo $texts[$i]?:""; ?></div>
+              <div class="body"><?php echo html_entity_decode($texts[$i])?:""; ?></div>
             </div>
           <?php
         }

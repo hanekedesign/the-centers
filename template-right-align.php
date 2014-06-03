@@ -3,8 +3,9 @@
 Template Name: Right-Aligned Template
 */
 include_once locate_template('/lib/advance-edit-toolkit.php');
+global $right_aligned;
+
 $panelmode = get_panel_mode();
-$right_aligned = 1;
 ?>
 
 <div class="container page">

@@ -22,39 +22,39 @@
       }
   }
 
-  update_post_meta( $post_id, 'home_largebox_header_image_0', $_POST['home_largebox_header_image_0']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_image_1', $_POST['home_largebox_header_image_1']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_image_2', $_POST['home_largebox_header_image_2']?:"");
+  update_post_meta( $post_id, 'home_largebox_header_image_0', esc_html($_POST['home_largebox_header_image_0']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_image_1', esc_html($_POST['home_largebox_header_image_1']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_image_2', esc_html($_POST['home_largebox_header_image_2']?:""));
 
-  update_post_meta( $post_id, 'home_largebox_header_0', $_POST['home_largebox_header_0']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_1', $_POST['home_largebox_header_1']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_2', $_POST['home_largebox_header_2']?:"");
+  update_post_meta( $post_id, 'home_largebox_header_0', esc_html($_POST['home_largebox_header_0']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_1', esc_html($_POST['home_largebox_header_1']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_2', esc_html($_POST['home_largebox_header_2']?:""));
 
-  update_post_meta( $post_id, 'home_largebox_subheader_first_0', $_POST['home_largebox_subheader_first_0']?:"");
-  update_post_meta( $post_id, 'home_largebox_subheader_first_1', $_POST['home_largebox_subheader_first_1']?:"");
-  update_post_meta( $post_id, 'home_largebox_subheader_first_2', $_POST['home_largebox_subheader_first_2']?:"");
+  update_post_meta( $post_id, 'home_largebox_subheader_first_0', esc_html($_POST['home_largebox_subheader_first_0']?:""));
+  update_post_meta( $post_id, 'home_largebox_subheader_first_1', esc_html($_POST['home_largebox_subheader_first_1']?:""));
+  update_post_meta( $post_id, 'home_largebox_subheader_first_2', esc_html($_POST['home_largebox_subheader_first_2']?:""));
 
-  update_post_meta( $post_id, 'home_largebox_subheader_second_0', $_POST['home_largebox_subheader_second_0']?:"");
-  update_post_meta( $post_id, 'home_largebox_subheader_second_1', $_POST['home_largebox_subheader_second_1']?:"");
-  update_post_meta( $post_id, 'home_largebox_subheader_second_2', $_POST['home_largebox_subheader_second_2']?:"");
+  update_post_meta( $post_id, 'home_largebox_subheader_second_0', esc_html($_POST['home_largebox_subheader_second_0']?:""));
+  update_post_meta( $post_id, 'home_largebox_subheader_second_1', esc_html($_POST['home_largebox_subheader_second_1']?:""));
+  update_post_meta( $post_id, 'home_largebox_subheader_second_2', esc_html($_POST['home_largebox_subheader_second_2']?:""));
 
-  update_post_meta( $post_id, 'home_largebox_header_text', $_POST['home_largebox_header_text']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_link_text', $_POST['home_largebox_header_link_text']?:"");
-  update_post_meta( $post_id, 'home_largebox_header_link', $_POST['home_largebox_header_link']?:"");
+  update_post_meta( $post_id, 'home_largebox_header_text', esc_html($_POST['home_largebox_header_text']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_link_text', esc_html($_POST['home_largebox_header_link_text']?:""));
+  update_post_meta( $post_id, 'home_largebox_header_link', esc_html($_POST['home_largebox_header_link']?:""));
 
   for ($i = 0; $i < 4; $i++) {
-    update_post_meta( $post_id, 'home_minibox_header_'.$i, $_POST['home_minibox_header_'.$i]?:"");
-    update_post_meta( $post_id, 'home_minibox_text_'.$i, $_POST['home_minibox_text_'.$i]?:"");
-    update_post_meta( $post_id, 'home_minibox_link_'.$i, $_POST['home_minibox_link_'.$i]?:"");
-    update_post_meta( $post_id, 'home_minibox_link_text_'.$i, $_POST['home_minibox_link_text_'.$i]?:"");
-    update_post_meta( $post_id, 'home_minibox_color_'.$i, $_POST['home_minibox_color_'.$i]?:"");
+    update_post_meta( $post_id, 'home_minibox_header_'.$i, esc_html($_POST['home_minibox_header_'.$i]?:""));
+    update_post_meta( $post_id, 'home_minibox_text_'.$i, esc_html($_POST['home_minibox_text_'.$i]?:""));
+    update_post_meta( $post_id, 'home_minibox_link_'.$i, esc_html($_POST['home_minibox_link_'.$i]?:""));
+    update_post_meta( $post_id, 'home_minibox_link_text_'.$i, esc_html($_POST['home_minibox_link_text_'.$i]?:""));
+    update_post_meta( $post_id, 'home_minibox_color_'.$i, esc_html($_POST['home_minibox_color_'.$i]?:""));
   }
 
-  update_post_meta( $post_id, 'home_footer_header', $_POST['home_footer_header']?:"");
-  update_post_meta( $post_id, 'home_footer_content', $_POST['home_footer_content']?:"");
-  update_post_meta( $post_id, 'home_footer_button_text', $_POST['home_footer_button_text']?:"");
-  update_post_meta( $post_id, 'home_footer_button_link', $_POST['home_footer_button_link']?:"");
-  update_post_meta( $post_id, 'home_footer_image', $_POST['home_footer_image']?:0);
+  update_post_meta( $post_id, 'home_footer_header', esc_html($_POST['home_footer_header']?:""));
+  update_post_meta( $post_id, 'home_footer_content', esc_html($_POST['home_footer_content']?:""));
+  update_post_meta( $post_id, 'home_footer_button_text', esc_html($_POST['home_footer_button_text']?:""));
+  update_post_meta( $post_id, 'home_footer_button_link', esc_html($_POST['home_footer_button_link']?:""));
+  update_post_meta( $post_id, 'home_footer_image', esc_html($_POST['home_footer_image']?:0));
         
   /*$prefix = "contact_form_0_";
   

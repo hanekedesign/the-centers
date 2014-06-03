@@ -22,46 +22,46 @@
       }
   }
 
-  update_post_meta( $post_id, 'advedit_panelmode', $_POST['adved_panelselect']?:0 );
-  update_post_meta( $post_id, 'advedit_image_blurb', $_POST['advedit_image_blurb']?:"");
+  update_post_meta( $post_id, 'advedit_panelmode', esc_html($_POST['adved_panelselect']?:0) );
+  update_post_meta( $post_id, 'advedit_image_blurb', esc_html($_POST['advedit_image_blurb']?:""));
     
-  update_post_meta( $post_id, 'advedit_sidebar_form_header', $_POST['sidebar_form_header']?:0 );
-  update_post_meta( $post_id, 'advedit_sidebar_form_color', $_POST['sidebar_form_color']?:"primary" );
-  update_post_meta( $post_id, 'advedit_sidebar_form_type', $_POST['sidebar_form_type']?:0 );
-  update_post_meta( $post_id, 'advedit_sidebar_form_text', $_POST['sidebar_form_text']?:"" );
-  update_post_meta( $post_id, 'advedit_sidebar_form_name', $_POST['sidebar_form_name']?:"" );
-  update_post_meta( $post_id, 'advedit_sidebar_form_placeholder', $_POST['sidebar_form_placeholder']?:"" );
-  update_post_meta( $post_id, 'advedit_sidebar_image', $_POST['advedit_sidebar_image']?:"" );
-  update_post_meta( $post_id, 'advedit_sidebar_sibling_menu', $_POST['advedt_siblemenu']?:false );
+  update_post_meta( $post_id, 'advedit_sidebar_form_header', esc_html($_POST['sidebar_form_header']?:0));
+  update_post_meta( $post_id, 'advedit_sidebar_form_color', esc_html($_POST['sidebar_form_color']?:"primary"));
+  update_post_meta( $post_id, 'advedit_sidebar_form_type', esc_html($_POST['sidebar_form_type']?:0) );
+  update_post_meta( $post_id, 'advedit_sidebar_form_text', esc_html($_POST['sidebar_form_text']?:"") );
+  update_post_meta( $post_id, 'advedit_sidebar_form_name', esc_html($_POST['sidebar_form_name']?:"") );
+  update_post_meta( $post_id, 'advedit_sidebar_form_placeholder', esc_html($_POST['sidebar_form_placeholder']?:"") );
+  update_post_meta( $post_id, 'advedit_sidebar_image', esc_html($_POST['advedit_sidebar_image']?:"") );
+  update_post_meta( $post_id, 'advedit_sidebar_sibling_menu', esc_html($_POST['advedt_siblemenu']?:false) );
 
-  update_post_meta( $post_id, 'advedit_header_mode', $_POST['advedit_header_mode']?:"");
-  update_post_meta( $post_id, 'advedit_header_color', $_POST['advedit_header_color']?:"");
-  update_post_meta( $post_id, 'advedit_header_text', $_POST['advedit_header_text']?:"");
-  update_post_meta( $post_id, 'advedit_header_image', $_POST['advedit_header_image']?:"");
-  update_post_meta( $post_id, 'advedit_header_title', $_POST['advedit_header_title']?:"");
+  update_post_meta( $post_id, 'advedit_header_mode', esc_html($_POST['advedit_header_mode']?:""));
+  update_post_meta( $post_id, 'advedit_header_color', esc_html($_POST['advedit_header_color']?:""));
+  update_post_meta( $post_id, 'advedit_header_text', esc_html($_POST['advedit_header_text']?:""));
+  update_post_meta( $post_id, 'advedit_header_image', esc_html($_POST['advedit_header_image']?:""));
+  update_post_meta( $post_id, 'advedit_header_title', esc_html($_POST['advedit_header_title']?:""));
 
-  update_post_meta( $post_id, 'advedit_footer_mode', $_POST['advedit_footer_mode']?:"");
+  update_post_meta( $post_id, 'advedit_footer_mode', esc_html($_POST['advedit_footer_mode']?:""));
 
   // FAQ Data
-  update_post_meta( $post_id, 'advedit_faq_root_title', $_POST['faq_root_title']?:"");
-  update_post_meta( $post_id, 'advedit_faq_root_body', $_POST['faq_root_body']?:"");
-  update_post_meta( $post_id, 'advedit_faq_question', $_POST['faq_title']?:"");
-  update_post_meta( $post_id, 'advedit_faq_answer', $_POST['faq_text']?:"");
+  update_post_meta( $post_id, 'advedit_faq_root_title', esc_html($_POST['faq_root_title']?:""));
+  update_post_meta( $post_id, 'advedit_faq_root_body', esc_html($_POST['faq_root_body']?:""));
+  update_post_meta( $post_id, 'advedit_faq_question', array_map( 'esc_html', $_POST['faq_title'] ));
+  update_post_meta( $post_id, 'advedit_faq_answer', array_map( 'esc_html', $_POST['faq_text'] ));
 
   // Footer
-  update_post_meta( $post_id, 'advedt_widebox_header', $_POST['advedt_widebox_header']?:"");
-  update_post_meta( $post_id, 'advedt_widebox_button_label', $_POST['advedt_widebox_button_label']?:"");
-  update_post_meta( $post_id, 'advedt_widebox_button', $_POST['advedt_widebox_button']?:"");
-  update_post_meta( $post_id, 'advedt_widebox_button_two_label', $_POST['advedt_widebox_button_two_label']?:"");
-  update_post_meta( $post_id, 'advedt_widebox_button_two', $_POST['advedt_widebox_button_two']?:"");
+  update_post_meta( $post_id, 'advedt_widebox_header', esc_html($_POST['advedt_widebox_header']?:""));
+  update_post_meta( $post_id, 'advedt_widebox_button_label', esc_html($_POST['advedt_widebox_button_label']?:""));
+  update_post_meta( $post_id, 'advedt_widebox_button', esc_html($_POST['advedt_widebox_button']?:""));
+  update_post_meta( $post_id, 'advedt_widebox_button_two_label', esc_html($_POST['advedt_widebox_button_two_label']?:""));
+  update_post_meta( $post_id, 'advedt_widebox_button_two', esc_html($_POST['advedt_widebox_button_two']?:""));
 
   for ($i = 0; $i < 4; $i++) {
     if (!isset($_POST['advedt_minibox_text_'.$i])) {continue;};
-    update_post_meta( $post_id, 'advedt_minibox_header_'.$i, $_POST['advedt_minibox_header_'.$i]?:"");
-    update_post_meta( $post_id, 'advedt_minibox_text_'.$i, $_POST['advedt_minibox_text_'.$i]?:"");
-    update_post_meta( $post_id, 'advedt_minibox_link_'.$i, $_POST['advedt_minibox_link_'.$i]?:"");
-    update_post_meta( $post_id, 'advedt_minibox_link_text_'.$i, $_POST['advedt_minibox_link_text_'.$i]?:"");
-    update_post_meta( $post_id, 'advedt_minibox_color_'.$i, $_POST['advedt_minibox_color_'.$i]?:"");
+    update_post_meta( $post_id, 'advedt_minibox_header_'.$i, esc_html($_POST['advedt_minibox_header_'.$i]?:""));
+    update_post_meta( $post_id, 'advedt_minibox_text_'.$i, esc_html($_POST['advedt_minibox_text_'.$i]?:""));
+    update_post_meta( $post_id, 'advedt_minibox_link_'.$i, esc_html($_POST['advedt_minibox_link_'.$i]?:""));
+    update_post_meta( $post_id, 'advedt_minibox_link_text_'.$i, esc_html($_POST['advedt_minibox_link_text_'.$i]?:""));
+    update_post_meta( $post_id, 'advedt_minibox_color_'.$i, esc_html($_POST['advedt_minibox_color_'.$i]?:""));
   }
 
   /*$prefix = "contact_form_0_";

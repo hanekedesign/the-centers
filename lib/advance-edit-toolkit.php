@@ -110,7 +110,7 @@
     global $post;
     // Get our sidebar type
     $headermode = get_post_meta( $post->ID, 'advedit_header_mode', true );
-
+      
     switch ($headermode) {
       case 0:
         break;
@@ -120,7 +120,14 @@
         $text = get_post_meta($post->ID, 'advedit_header_text', TRUE)?:'';
         $image = get_post_meta($post->ID, 'advedit_header_image', TRUE)?:0;
         $image_url = wp_get_attachment_image_src( $image , 'full' )?:Array("");
-
+      
+        $right_aligned = false;
+        
+        $template_file = get_post_meta($post->ID, '_wp_page_template', TRUE);
+        if ($template_file === 'template-right-align.php') {
+          $right_aligned = true;
+        } 
+    
         ob_start();?>
               <div class="col-xs-6">
                 <div class="text">
@@ -137,7 +144,7 @@
         <div class="subbanner image-banner color gray">
           <div class="container color <?php echo $color; ?>">              
             <div class="row">
-              <?php if (!isset($right_aligned)) {
+              <?php if ($right_aligned == false) {
                 echo $text_content;
                 echo $image_content;
               } else {
