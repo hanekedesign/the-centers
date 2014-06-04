@@ -853,6 +853,14 @@ select {
   padding: 0 10px;
   color: @white;
 }
+ 
+form {
+  &::after {
+    content: " ";
+    display: table;
+    clear: both;
+  }  
+}
 
 /* ==========================================================================
    Footer

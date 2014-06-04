@@ -27,12 +27,14 @@
     
   update_post_meta( $post_id, 'advedit_sidebar_form_header', esc_html($_POST['sidebar_form_header']?:0));
   update_post_meta( $post_id, 'advedit_sidebar_form_color', esc_html($_POST['sidebar_form_color']?:"primary"));
-  update_post_meta( $post_id, 'advedit_sidebar_form_type', array_map( 'esc_html', $_POST['sidebar_form_type'] ));
+  update_post_meta( $post_id, 'advedit_sidebar_form', esc_html($_POST['sidebar_form']?:""));
+
+  /*update_post_meta( $post_id, 'advedit_sidebar_form_type', array_map( 'esc_html', $_POST['sidebar_form_type'] ));
   update_post_meta( $post_id, 'advedit_sidebar_form_text', array_map( 'esc_html', $_POST['sidebar_form_text'] ));
   update_post_meta( $post_id, 'advedit_sidebar_form_name', array_map( 'esc_html', $_POST['sidebar_form_name'] ));
-  update_post_meta( $post_id, 'advedit_sidebar_form_placeholder', array_map( 'esc_html', $_POST['sidebar_form_placeholder'] ));
+  update_post_meta( $post_id, 'advedit_sidebar_form_placeholder', array_map( 'esc_html', $_POST['sidebar_form_placeholder'] ));*/
 
-  update_post_meta( $post_id, 'advedit_sidebar_image', esc_html($_POST['advedit_sidebar_image']?:"") );
+  update_post_meta( $post_id, 'advedit_sidebar_image', $_POST['advedit_sidebar_image']?:"" );
   update_post_meta( $post_id, 'advedit_sidebar_sibling_menu', esc_html($_POST['advedt_siblemenu']?:false) );
 
   update_post_meta( $post_id, 'advedit_header_mode', esc_html($_POST['advedit_header_mode']?:""));

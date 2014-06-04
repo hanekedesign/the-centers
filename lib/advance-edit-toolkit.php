@@ -1,7 +1,11 @@
 <?php     
   function generate_form() {
     global $post;
-    $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
+    
+    $sidebar_text = get_post_meta( $post->ID, 'advedit_sidebar_form', true )?:"";
+    echo do_shortcode(html_entity_decode($sidebar_text));
+    
+    /*$sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
     $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:array();
     $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:array();
     $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:array();
@@ -25,7 +29,7 @@
           echo '<button type="submit" class="btn btn-default">' . $sidebar_texts[$i] . '</button><div class="cf"></div>';
           break;
       }
-    }
+    }*/
   }
 
   function get_panel_mode() {

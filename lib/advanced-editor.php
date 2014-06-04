@@ -192,12 +192,13 @@ function render_sidebar($col) {
   $sidebar_siblm = get_post_meta( $post->ID, 'advedit_sidebar_sibling_menu', true )?:false;
   $sidebar_image = get_post_meta( $post->ID, 'advedit_sidebar_image', true )?:0;
   $sidebar_color = get_post_meta( $post->ID, 'advedit_sidebar_form_color', true )?:"primary";
+  $sidebar_header = get_post_meta( $post->ID, 'advedit_sidebar_form_header', true)?:"";
 
-  $sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
+  /*$sidebar_types = get_post_meta( $post->ID, 'advedit_sidebar_form_type', true )?:array();
   $sidebar_texts = get_post_meta( $post->ID, 'advedit_sidebar_form_text', true )?:array();
   $sidebar_names = get_post_meta( $post->ID, 'advedit_sidebar_form_name', true )?:array();
   $sidebar_place = get_post_meta( $post->ID, 'advedit_sidebar_form_placeholder', true )?:array();
-  $sidebar_header = get_post_meta( $post->ID, 'advedit_sidebar_form_header', true)?:"";
+  $sidebar_header = get_post_meta( $post->ID, 'advedit_sidebar_form_header', true)?:"";*/
   ?>    
       <div class="wp-col-<?php echo $col; ?> meta-box-sortables ui-sortable">
         <div class="postbox">
@@ -240,25 +241,7 @@ function render_sidebar($col) {
               <input type="text" name="sidebar_form_header" id="sidebar_form_header" value="<?php echo $sidebar_header; ?>">
               <p>
                 <strong>Form Markup</strong></p>
-                <sl:sortylist id="sidebar_form" class="standard" data-form='["sidebar_form_type","sidebar_form_text","sidebar_form_name","sidebar_form_placeholder"]' data-default='["text","Hello World","",""]' data-select="single" data-default-label="Text: Hello World!">
-                  <?php 
-                    for ($i = 0; $i < count($sidebar_types); $i++) {
-                      ?>
-                        <sl:item>
-                          <?php echo ucfirst($sidebar_types[$i]?:"text"); ?>: <?php echo $sidebar_texts[$i]?:""; ?>
-                          <input type="hidden" name="sidebar_form_type[]" value="<?php echo $sidebar_types[$i]?:"text"; ?>"/>
-                          <input type="hidden" name="sidebar_form_text[]" value="<?php echo $sidebar_texts[$i]?:""; ?>"/>
-                          <input type="hidden" name="sidebar_form_name[]" value="<?php echo $sidebar_names[$i]?:""; ?>"/>
-                          <input type="hidden" name="sidebar_form_placeholder[]" value="<?php echo $sidebar_place[$i]?:""; ?>"/>
-                        </sl:item>
-                      <?php
-                    }
-                  ?>
-                  <sl:controls>
-                    <sl:add>Add</sl:add>
-                    <sl:sub>Delete</sl:sub>
-                  </sl:controls>
-                </sl:sortylist>
+                <textarea id="sidebar_form" name="sidebar_form"><?php echo get_post_meta( $post->ID, 'advedit_sidebar_form', true)?:"" ?></textarea>
               <div id="item-editor" style="display: none">
                 <p><strong>Item Editor</strong></p>
                 <p>Type</p>

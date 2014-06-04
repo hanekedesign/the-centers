@@ -17,6 +17,7 @@ require_once locate_template('/lib/relative-urls.php');   // Root relative URLs
 require_once locate_template('/lib/widgets.php');         // Sidebars and widgets
 require_once locate_template('/lib/scripts.php');         // Scripts and stylesheets
 require_once locate_template('/lib/custom.php');          // Custom functions
+require_once locate_template('/lib/formerly.php');        // Forms support
 
 /* Get our DB name(s) */
 $variables_table = $wpdb->prefix . "centers_data";
@@ -133,10 +134,8 @@ function grab_save() {
 add_action('save_post', 'grab_save');
 
 add_shortcode('subbox',function($attr,$content) {
-  return '<div class="subbox">' . do_shortcode($content) . '</div>';
-});
-add_shortcode('header',function($attr,$content) {
-  return '<h2>' . do_shortcode($content) . '</h2>';
+  $return = '<div class="subbox">' . do_shortcode($content) . '</div>';
+  return $return;
 });
 
 

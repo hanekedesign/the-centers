@@ -69,6 +69,17 @@ $('.accordion .title').click(function() {
 $('#news-archive').change(function(a,b) {
   document.location.href = $(this).val();
 });
+  
+$('button[type=submit]').click(function() {
+  valid = true;
+  $('input, textarea').each(function(a,b) {
+    if ($(b).data('required') === true && $(b).val().replace("\\s","") === "") {
+      valid = false;
+      alert("Please enter a value for: " + $(b).attr('placeholder').substr(0,$(b).attr('placeholder').length-2));
+    }
+  });
+  return valid;
+});
 
 })(jQuery); // Fully reference jQuery after this point.
 
