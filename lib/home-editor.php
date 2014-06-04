@@ -101,6 +101,7 @@ function create_large_editor($id) {
   $header = get_post_meta($post->ID, 'home_largebox_header_'.$id, TRUE)?:"";
   $lineone = get_post_meta($post->ID, 'home_largebox_subheader_first_'.$id, TRUE)?:"";
   $linetwo = get_post_meta($post->ID, 'home_largebox_subheader_second_'.$id, TRUE)?:"";
+  $link = get_post_meta($post->ID, 'home_largebox_subheader_link_'.$id, TRUE)?:"";
   $image = get_post_meta($post->ID, 'home_largebox_header_image_'.$id, TRUE)?:0;
   $imgsrc = wp_get_attachment_image_src( $image , 'full' )?:array("");
   ?>
@@ -113,6 +114,7 @@ function create_large_editor($id) {
             <input type="text" placeholder="Line 1" class="header" name="home_largebox_header_<?php echo $id; ?>" value="<?php echo $header; ?>">
             <input type="text" placeholder="Line 2" class="subheader" name="home_largebox_subheader_first_<?php echo $id; ?>" value="<?php echo $lineone; ?>">            
             <input type="text" placeholder="Line 3" class="subheader" name="home_largebox_subheader_second_<?php echo $id; ?>" value="<?php echo $linetwo; ?>">            
+            <input type="text" placeholder="Link" class="subheader" name="home_largebox_subheader_link_<?php echo $id; ?>" value="<?php echo $link; ?>">            
           </div>
           <div class="footer item_<?php echo $id; ?>">
           </div>

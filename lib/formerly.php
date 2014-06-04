@@ -10,12 +10,13 @@ function gen_opt_field($name, $val) {
 function gen_size_class($size, $extraval) {
   $sizeclass = "input-col-12";  
   switch ($size) {
+    case "none":
+      $sizeclass = "input-col-none";
     case "half":
       $sizeclass = "input-col-6";
     case "full":
-      $sizeclass = "input-col-12";
     default:
-      $sizeclass = "input-col-none";
+      $sizeclass = "input-col-12";
   }
   $class = trim($sizeclass . " " . $extraval);
   return " class=\"$class\" ";
@@ -31,8 +32,9 @@ function sc_form($params, $content) {
   $method = val_if_exists($params,'method')?:"post";
   $class =  val_if_exists($params,'class')?:null;
   $action = val_if_exists($params,'action')?:"/";
+  $redirect = val_if_exists($params,'redirect')?:"";
   
-  return "<form action=\"$action\" name=\"$name\"" . gen_opt_field("target",$target) . gen_opt_field("class",$class) . "method=\"$method\">" . do_shortcode($content) . "</form>";
+  return "<form action=\"$action\" name=\"$name\"" . gen_opt_field("redirect",$redirect) . gen_opt_field("target",$target) . gen_opt_field("class",$class) . "method=\"$method\">" . "<input type=\"hidden\" name=\"redirect-target\" value=\"$redirect\">" . do_shortcode($content) . "</form>";
 }
 
 function sc_header($params, $content) {
@@ -102,10 +104,9 @@ function sc_checkbox($params, $content) {
 }
 
 function sc_submit($params, $content) {
-  $class =       val_if_exists($params,'class')?:null;
+  $class =       val_if_exists($params,'class')?:"btn btn-default";
   $size =        val_if_exists($params,'size')?:null;
   $name =        val_if_exists($params,'name')?:"my-form-" . ++$incrmt;
-  $class .= " btn btn-default";
   
   return "<button class=\"$class\" name=\"$name\" type=\"submit\" " . gen_size_class($size, $class) . ">$content</button>";
 }

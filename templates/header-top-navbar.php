@@ -4,7 +4,7 @@
       <div class="img"></div>
       <div class="callbox">
         <p class="cta">Call Us</p>
-        <p class="number">(888) 888-8888</p>
+        <p class="number"><?php echo get_option('phone_number',"(888) 888-8888"); ?></p>
       </div>
       <nav class="nav-mini">
           <?php

@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="number">Call (888) 888-8888</div>
+        <div class="number">Call <?php echo get_option('phone_number',"(888) 888-8888"); ?></div>
         <a href="/contact/" class="contact">+ Contact Us Online</a>
       </div>
     </div>

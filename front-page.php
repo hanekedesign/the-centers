@@ -4,20 +4,23 @@ function generate_large_box($id) {
   $header = get_post_meta($post->ID, 'home_largebox_header_'.$id, TRUE)?:"";
   $lineone = get_post_meta($post->ID, 'home_largebox_subheader_first_'.$id, TRUE)?:"";
   $linetwo = get_post_meta($post->ID, 'home_largebox_subheader_second_'.$id, TRUE)?:"";
+  $link = get_post_meta($post->ID, 'home_largebox_subheader_link_'.$id, TRUE)?:"";
   $image = get_post_meta($post->ID, 'home_largebox_header_image_'.$id, TRUE)?:0;
   $image_src = wp_get_attachment_image_src( $image , 'full' )?:Array("");
   $colors = array("secondary", "tertiary", "primary");
   $color = $colors[$id];
   ?>
       <div class="col-md-4">
-        <div class="home-box"> 
-          <div class="image" style="background-image: url(<?php echo $image_src[0]; ?>)"></div>
-          <div class="content">
-            <div class="upper"><?php echo $header; ?></div>
-            <div class="lower"><?php echo $lineone; ?><br/><?php echo $linetwo; ?></div>          
-          </div>
-          <div class="bottom <?php echo $color; ?>">+ Find out how</div>
-        </div>        
+        <a href="<?php echo $link; ?>" class="no-ul">
+          <div class="home-box"> 
+            <div class="image" style="background-image: url(<?php echo $image_src[0]; ?>)"></div>
+            <div class="content">
+              <div class="upper"><?php echo $header; ?></div>
+              <div class="lower"><?php echo $lineone; ?><br/><?php echo $linetwo; ?></div>          
+            </div>
+            <div class="bottom <?php echo $color; ?>">+ Find out how</div>
+          </div>  
+        </a>
       </div>
   <?php
 }

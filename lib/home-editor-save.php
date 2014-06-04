@@ -22,21 +22,13 @@
       }
   }
 
-  update_post_meta( $post_id, 'home_largebox_header_image_0', esc_html($_POST['home_largebox_header_image_0']?:""));
-  update_post_meta( $post_id, 'home_largebox_header_image_1', esc_html($_POST['home_largebox_header_image_1']?:""));
-  update_post_meta( $post_id, 'home_largebox_header_image_2', esc_html($_POST['home_largebox_header_image_2']?:""));
-
-  update_post_meta( $post_id, 'home_largebox_header_0', esc_html($_POST['home_largebox_header_0']?:""));
-  update_post_meta( $post_id, 'home_largebox_header_1', esc_html($_POST['home_largebox_header_1']?:""));
-  update_post_meta( $post_id, 'home_largebox_header_2', esc_html($_POST['home_largebox_header_2']?:""));
-
-  update_post_meta( $post_id, 'home_largebox_subheader_first_0', esc_html($_POST['home_largebox_subheader_first_0']?:""));
-  update_post_meta( $post_id, 'home_largebox_subheader_first_1', esc_html($_POST['home_largebox_subheader_first_1']?:""));
-  update_post_meta( $post_id, 'home_largebox_subheader_first_2', esc_html($_POST['home_largebox_subheader_first_2']?:""));
-
-  update_post_meta( $post_id, 'home_largebox_subheader_second_0', esc_html($_POST['home_largebox_subheader_second_0']?:""));
-  update_post_meta( $post_id, 'home_largebox_subheader_second_1', esc_html($_POST['home_largebox_subheader_second_1']?:""));
-  update_post_meta( $post_id, 'home_largebox_subheader_second_2', esc_html($_POST['home_largebox_subheader_second_2']?:""));
+  for ($i = 0; $i < 3; $i++) {
+    update_post_meta( $post_id, 'home_largebox_header_image_'.$i, esc_html($_POST['home_largebox_header_image_'.$i]?:""));
+    update_post_meta( $post_id, 'home_largebox_header_'.$i, esc_html($_POST['home_largebox_header_'.$i]?:""));
+    update_post_meta( $post_id, 'home_largebox_subheader_first_'.$i, esc_html($_POST['home_largebox_subheader_first_'.$i]?:""));
+    update_post_meta( $post_id, 'home_largebox_subheader_second_'.$i, esc_html($_POST['home_largebox_subheader_second_'.$i]?:""));
+    update_post_meta( $post_id, 'home_largebox_subheader_link_'.$i, esc_html($_POST['home_largebox_subheader_link_'.$i]?:""));
+  }
 
   update_post_meta( $post_id, 'home_largebox_header_text', esc_html($_POST['home_largebox_header_text']?:""));
   update_post_meta( $post_id, 'home_largebox_header_link_text', esc_html($_POST['home_largebox_header_link_text']?:""));

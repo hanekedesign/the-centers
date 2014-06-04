@@ -18,6 +18,7 @@ require_once locate_template('/lib/widgets.php');         // Sidebars and widget
 require_once locate_template('/lib/scripts.php');         // Scripts and stylesheets
 require_once locate_template('/lib/custom.php');          // Custom functions
 require_once locate_template('/lib/formerly.php');        // Forms support
+require_once locate_template('/lib/global-settings.php'); // Global Configuration
 
 /* Get our DB name(s) */
 $variables_table = $wpdb->prefix . "centers_data";
