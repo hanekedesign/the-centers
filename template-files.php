@@ -30,7 +30,7 @@ if ($attachments) {
     <div class="col-xs-12"><h2>State Pooled Trust Documents</h2></div>
   </div>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-10">
         <?php foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue;?>
           <a href="#" class="state-button" data-tab="<?php echo $aid; ?>"><?php echo $aid; ?></a>
         <?php endforeach ?>
