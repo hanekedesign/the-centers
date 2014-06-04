@@ -21,7 +21,7 @@ if ($attachments) {
 function render_parameters_box() {
   global $post,$targets,$map;
   wp_nonce_field( 'media_extensions_meta_box', 'media_extensions_meta_box_nonce' );
-  $state = get_post_meta($post->ID, 'media_extensions_folder', TRUE)?:0;
+  $state = get_post_meta($post->ID, 'media_extensions_folder', TRUE)?:"";
   $subbox = get_post_meta($post->ID, 'media_extensions_subfolder', TRUE)?:"";
   ?>
     <p><strong>Folder</strong></p>

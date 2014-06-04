@@ -42,8 +42,8 @@ if ($attachments) {
     <div class="row">
       <div class="col-xs-12">
         <h2><?php echo $aid; ?></h2>
-        <?php foreach ($map['root'][$aid] as $sid => $child) : $meta = get_post( $child, '', true );?>
-          <a class="document" href="<?php echo wp_get_attachment_url( $child );?>"><?php echo "$meta->post_title "; ?></a>
+        <?php foreach ($map['root'][$aid] as $sid => $child) : ?>
+          <a class="document" href="<?php echo $child->attachment_url ?>"><?php echo "$child->post_title "; ?></a>
         <?php endforeach ?>
       </div>
     </div>
