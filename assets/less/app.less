@@ -124,6 +124,30 @@ h1, h2, h3, h4, h5 {
       padding: 30px 0;
     }
   }
+  &.post-banner {
+    h1 {
+      font-size: 36px;
+      color: @white;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.25;
+    }
+    .category {
+      font-size: 14px;
+      color: @secondary-darker;
+      font-weight: 700;
+      line-height: 22px;      
+      display: inline-block;
+    }
+    .date {
+      font-family: @font-family-sans-serif;
+      color: @white;
+      font-style: italic;
+      line-height: 22p;
+      font-size: 400;
+      display: inline-block;
+    }
+  }
 }
 
 
@@ -338,6 +362,11 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+.item .blog-image {
+  background-size: cover;
+  margin-bottom: 20px;
+}
+
 .mini-box {
   .content {
     padding: 15px;
@@ -381,11 +410,11 @@ h1, h2, h3, h4, h5 {
     }
   }
   &.tertiary {
-    .bottom {
-      background-color: @tertiary;
-    }
     .content {
-      background-color: @tertiary-darker;  
+      background-color: @tertiary;  
+    }
+    .bottom {
+      background-color: @tertiary-darker;
     }
   }
   &.gray {
@@ -486,6 +515,30 @@ h1, h2, h3, h4, h5 {
 /* ==========================================================================
    Sidebar
    ========================================================================== */
+.sidebar-box {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: @gray-lightest;
+  .title {
+    font-size: 18px;
+    color: @gray;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 32px;
+  }
+}
+
+.sidebar-categories {
+  a {
+    display: block;
+    color: @secondary-darker;
+    font-style: italic;
+    line-height: 22px;
+    &::before {
+      content: '+ ';
+    }
+  }
+}
 
 .sidebar-box {
   margin: 20px 0;
@@ -524,8 +577,11 @@ h1, h2, h3, h4, h5 {
   .header {
     background-color:  @gray;
   }
-  .entry.active {
+  .subheader {
     background-color: @secondary-darker;    
+  }
+  .entry.active {
+    background-color: @secondary;    
   }
   
   a.entry {
@@ -640,6 +696,7 @@ h1, h2, h3, h4, h5 {
       color: @secondary;
       font-weight: 700;
       line-height: 22px;
+      display: block;
     }
     .category {
       display: inline-block;
@@ -650,7 +707,6 @@ h1, h2, h3, h4, h5 {
       }
       a:not(:last-child)::after {
         display: inline-block;
-        content: ', ';
       }
     }
     .date {
@@ -660,6 +716,18 @@ h1, h2, h3, h4, h5 {
     .excerpt {
       font-size: 14px;
       font-family: @font-family-sans-serif;
+      .link {
+        display: block;
+        color: @secondary;
+        clear: both;
+        font-style: italic;
+        line-height: 22px;
+        font-size: 14px;
+        &::before {
+          content: '+ ';
+        }
+        &:hover {}
+      }
     }
     .right { 
       float: right;
@@ -667,17 +735,6 @@ h1, h2, h3, h4, h5 {
         display: block;
         text-align: right;
       }
-    }
-    .link {
-      color: @secondary;
-      clear: both;
-      font-style: italic;
-      line-height: 22px;
-      font-size: 14px;
-      &::before {
-        content: '+ ';
-      }
-      &:hover {}
     }
     hr {
       position: absolute;
@@ -709,7 +766,7 @@ h1, h2, h3, h4, h5 {
       }
     }
     a {
-      color: @secondary;
+      color: @link-color;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
@@ -723,6 +780,58 @@ h1, h2, h3, h4, h5 {
 .hentry .entry-content { }
 .hentry .entry-content { }
 .hentry footer { }
+
+/* ==========================================================================
+  Files Style
+   ========================================================================== */
+
+.files-style {
+  padding-bottom: 30px;
+  h2 {
+    font-size: 24px;
+    color: @gray;
+    font-weight: bold;
+    line-height: 32px;
+    margin-top: 20px;
+  }
+  .state-button {
+    display: inline-block;
+    color: @white;
+    font-size: 14px;
+    border: solid 1px @white;
+    background-color: @secondary-darker;
+    padding: 10px;
+    line-height: 14px;
+    &.active {
+      background-color: @primary;
+    }
+  }
+  .state-box {
+    padding: 15px;
+    margin-top: 5px;
+    background-color: @gray-lightest;
+    h3 {
+      font-size: 18px;
+      color: @gray;
+      line-height: 32px;
+    }
+  }
+  .document {
+    display: inline;
+    font-size: 14px;
+    font-family: @font-family-sans-serif;
+    color: @secondary-darker;
+    line-height: 28px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:after {
+      content:"\000A";
+      white-space: pre;
+    }
+  }
+}
 
 /* ==========================================================================
    Default Form UI
@@ -806,6 +915,10 @@ form.newsletter {
     display: inline-block;
     margin: 0 50px;
   }
+  a, a:focus {
+    color: @gray;
+    text-decoration: none;
+  }
 }
 
 .foot-main, .foot-copyright {
@@ -846,7 +959,6 @@ form.newsletter {
 .alignleft { float: left; }
 .alignright { float: right; }
 figure.alignnone { margin-left: 0; margin-right: 0; }
-
 
 
 /* ==========================================================================

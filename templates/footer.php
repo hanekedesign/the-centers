@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="number">Call (888) 888-8888</div>
-        <div class="contact">+ Contact Us Online</div>
+        <a href="/contact/" class="contact">+ Contact Us Online</a>
       </div>
     </div>
   </div>

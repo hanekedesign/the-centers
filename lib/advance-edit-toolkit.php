@@ -44,9 +44,16 @@
     $sidetra = "";
     
     if ($sidebar_siblm) {
-      $parent = get_post($post->post_parent);
+      // Get 2nd level ID.
+      $tgt_post = $post;
+      
+      while (get_post(get_post($tgt_post->ID)->post_parent)->post_parent != 0) {
+        $tgt_post = get_post($tgt_post->post_parent);
+      }
+      
+      $parent = get_post($tgt_post->post_parent);
       $post_args =  array(
-        'post_parent' => $post->ID,
+        'post_parent' => $tgt_post->ID,
         'post_type'   => 'page', 
         'posts_per_page' => -1,
         'post_status' => 'publish' );
@@ -54,10 +61,10 @@
       ob_start();
       ?>
           <div class="sidebar-menu">
-            <div class="header"><?php echo $parent->post_title; ?></div>
-            <div class="entry active"><?php echo $post->post_title; ?></div>
+            <a href="<?php echo get_permalink($parent->ID); ?>" class="header"><?php echo $parent->post_title; ?></a>
+            <a href="<?php echo get_permalink($tgt_post->ID); ?>" class="subheader active"><?php echo $tgt_post->post_title; ?></a>
             <?php foreach ($children as $child) { ?>
-            <a href="<?php echo get_permalink($child->ID); ?>" class="entry"><?php echo $child->post_title; ?></a>
+            <a href="<?php echo get_permalink($child->ID); ?>" class="entry<?php echo ($child->ID == $post->ID)?" active":""?>"><?php echo $child->post_title; ?></a>
             <?php } ?>
           </div>
       <?php
@@ -88,7 +95,9 @@
         <aside class="col-sm-4" role="complementary">
           <?php echo $sidetra; ?>
           <div class="contact-sidebar">
+            <?php if ($header != "") : ?>
             <div class="header <?php echo $color; ?>"><?php echo $header; ?></div>
+            <?php endif; ?>
             <div class="form"><?php generate_form(); ?></div>
           </div>
         </aside>
@@ -120,14 +129,13 @@
         $text = get_post_meta($post->ID, 'advedit_header_text', TRUE)?:'';
         $image = get_post_meta($post->ID, 'advedit_header_image', TRUE)?:0;
         $image_url = wp_get_attachment_image_src( $image , 'full' )?:Array("");
-      
         $right_aligned = false;
         
         $template_file = get_post_meta($post->ID, '_wp_page_template', TRUE);
         if ($template_file === 'template-right-align.php') {
           $right_aligned = true;
         } 
-    
+      
         ob_start();?>
               <div class="col-xs-6">
                 <div class="text">

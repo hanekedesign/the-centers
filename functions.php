@@ -45,6 +45,8 @@ if (is_admin()) {
   add_action('pre_get_posts', 'modify_editor' );
 }
 
+require_once locate_template('/lib/post-extensions.php');
+require_once locate_template('/lib/media-extensions.php');
   
 function get_search_form_with_label($print, $label) {
   global $searchlabel;

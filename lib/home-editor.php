@@ -44,7 +44,7 @@ function home_meta() {
   <div class="wp-container">  
     <div class="wp-row">
       <div class="wp-col-6">
-        <p>Header</p>
+        <p>Header</p>              
         <input type="text" name="home_footer_header" value="<?php echo get_post_meta($post->ID, 'home_footer_header', TRUE)?:"" ?>">
         <p>Content</p>
         <textarea name="home_footer_content"><?php echo get_post_meta($post->ID, 'home_footer_content', TRUE)?:"" ?></textarea>

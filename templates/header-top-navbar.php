@@ -32,6 +32,8 @@
 </nav>
 
 <?php
-  include_once locate_template('/lib/advance-edit-toolkit.php');
-  generate_header();
+  if (is_page() || is_home() || is_single()) {
+    include_once locate_template('/lib/advance-edit-toolkit.php');
+    generate_header();
+  }
 ?>

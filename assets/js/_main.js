@@ -65,7 +65,13 @@ $('.accordion .title').click(function() {
   $('.body',$(this).parent().parent()).slideUp('fast');
   $('.body',$(this).parent()).slideDown('fast');
 });
-  
+
+$('#news-archive').change(function(a,b) {
+  document.location.href = $(this).val();
+});
+
 })(jQuery); // Fully reference jQuery after this point.
+
+
 
 

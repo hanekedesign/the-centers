@@ -1,4 +1,7 @@
 <?php
+  // Disable comments
+  return;
+
   if (post_password_required()) {
     return;
   }
