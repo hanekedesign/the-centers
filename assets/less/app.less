@@ -65,6 +65,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .subbanner {
+  max-height: 250px;
   overflow: hidden;
   &.color, .color {
     color: @white;
@@ -494,6 +495,67 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+.about-page {
+  .form {
+    background-color: @gray-lightest;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .phone-number {
+    font-size: 36px;
+    color: @gray;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .contact-header {
+    font-size: 14px;
+    font-family: @font-family-sans-serif;
+    color: @gray;
+    line-height: 1.5;    
+  }
+  .contact-address {
+    font-size: 14px;
+    color: @gray;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.5;    
+  }
+  
+  form {
+    margin: -10px;
+  }
+  
+  .input-col-12, .input-col-6 {
+    float: left;
+    padding: 10px;
+  }
+  
+  .input-col-12 {
+    width: 100%;
+  }
+  .input-col-6 {
+    width: 50%;
+  }
+  
+  input[type="text"], select, textarea {
+    .color-placeholder(@white,@gray-lighter);
+    width: 100%;
+    min-height: 40px;
+    color: @white;
+    border: 0;
+    padding: 10px 10px;
+    background-color: @gray-lighter;
+    font-style: italic;
+  }
+  
+  .right {
+    float: right;
+  }
+  
+  select {
+    padding: 0 10px; 
+  }
+}
 
 /* ==========================================================================
    Short Codes
@@ -927,6 +989,7 @@ form.newsletter {
 }
 
 .foot-contact { 
+  font-family: @font-family-sans-serif;
   min-height: 45px;
   max-height: 90px;
   background-color: @primary;

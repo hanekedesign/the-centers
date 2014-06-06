@@ -92,6 +92,8 @@ function render_advanced_box($leftaligned) {
     $pagetype = 4;
   } else if ($template_file === 'template-files.php') {
     $pagetype = 5;
+  } else if ($template_file === 'template-about.php') {
+    $pagetype = 6;
   } else {
     $pagetype = 0;
   }
@@ -116,6 +118,8 @@ function render_advanced_box($leftaligned) {
           render_documents_editor('12');
         } else if ($pagetype === 5) {
           render_files_editor('12');
+        } else if ($pagetype === 6) {
+          render_about_editor('12');
         } else {
           render_editor('12');
         }
@@ -228,6 +232,33 @@ function render_documents_editor($col) {
                     <input type="text" placeholder="Target URL" name="advedt_files_folder_desc[<?php echo getKeyName($key); ?>][url]" value="<?php echo get_post_meta($post->ID,'advedt_files_folder_link_'.getKeyName($key),true); ?>">
                     <textarea placeholder="Description" class="small" name="advedt_files_folder_desc[<?php echo getKeyName($key); ?>][desc]"><?php echo get_post_meta($post->ID,'advedt_files_folder_desc_'.getKeyName($key),true); ?></textarea>
                   <?php endforeach ?> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <?php
+}
+
+function render_about_editor($col) {
+  global $post;
+
+  ?>
+      <div class="wp-col-<?php echo $col; ?>">
+        <div class="postbox">
+          <h4 class="hndle_"><span>About Content</span></h4>
+          <div class="inside">        
+            <div class="wp-container">
+              <div class="wp-row">                  
+                <div class="wp-col-6 meta-box-sortables ui-sortable inputmod">
+                  <p><strong>Main Form</strong></p>
+                  <textarea name="advedt_about_form"><?php echo get_post_meta( $post->ID, 'advedt_about_form', true )?:""; ?></textarea>
+                </div>
+                <div class="wp-col-6 meta-box-sortables ui-sortable inputmod">
+                  <p><strong>Mail Info</strong></p>
+                  <textarea name="advedt_about_contact_header" class="small"><?php echo get_post_meta( $post->ID, 'advedt_about_contact_header', true )?:""; ?></textarea>
+                  <textarea name="advedt_about_contact_address" class="small"><?php echo get_post_meta( $post->ID, 'advedt_about_contact_address', true )?:""; ?></textarea>
                 </div>
               </div>
             </div>

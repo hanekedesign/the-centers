@@ -60,6 +60,11 @@ update_post_meta( $post_id, 'advedt_files_browse_category', esc_html($_POST['adv
   update_post_meta( $post_id, 'advedt_widebox_button_two_label', esc_html($_POST['advedt_widebox_button_two_label']?:""));
   update_post_meta( $post_id, 'advedt_widebox_button_two', esc_html($_POST['advedt_widebox_button_two']?:""));
 
+  // About Data
+  update_post_meta( $post_id, 'advedt_about_form', esc_html($_POST['advedt_about_form']?:""));
+  update_post_meta( $post_id, 'advedt_about_contact_header', esc_html($_POST['advedt_about_contact_header']?:""));
+  update_post_meta( $post_id, 'advedt_about_contact_address', esc_html($_POST['advedt_about_contact_address']?:""));
+                    
   for ($i = 0; $i < 4; $i++) {
     if (!isset($_POST['advedt_minibox_text_'.$i])) {continue;};
     update_post_meta( $post_id, 'advedt_minibox_header_'.$i, esc_html($_POST['advedt_minibox_header_'.$i]?:""));

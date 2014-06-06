@@ -23,7 +23,7 @@ function home_meta() {
   <div class="wp-container">  
     <div class="wp-row">
       <div class="wp-col-12">
-        <textarea name="home_largebox_header_text"><?php echo get_post_meta($post->ID, 'home_largebox_header_text', TRUE)?:"" ?></textarea>
+          <?php wp_editor(html_entity_decode(stripslashes(get_post_meta($post->ID, 'home_largebox_header_text', TRUE)?:"")), 'home_largebox_header_text', array('mode' => 'specific_textareas','editor_selector' => 'tinymce-textarea')); ?>
         <p>Link Text</p>
         <input type="text" name="home_largebox_header_link_text" value="<?php echo get_post_meta($post->ID, 'home_largebox_header_link_text', TRUE)?:"" ?>">
         <p>Link Location</p>

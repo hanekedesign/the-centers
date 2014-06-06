@@ -41,7 +41,7 @@ function generate_large_box($id) {
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <?php echo get_post_meta($post->ID, 'home_largebox_header_text', TRUE)?:""; ?><br/>
+        <?php echo  html_entity_decode(get_post_meta($post->ID, 'home_largebox_header_text', TRUE)?:""); ?><br/>
         <a href="<?php echo get_post_meta($post->ID, 'home_largebox_header_link', TRUE)?:""; ?>">+ <?php echo get_post_meta($post->ID, 'home_largebox_header_link_text', TRUE)?:""; ?></a>
       </div>
     </div>
