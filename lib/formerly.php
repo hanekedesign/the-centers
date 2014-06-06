@@ -2,9 +2,12 @@
 
 $incrmt = 0;
 
-function gen_opt_field($name, $val) {
+function gen_opt_field($name, $val, $rep = null) {
   if ($val == null) return "";
-  return " $name=\"$val\" ";
+  echo "$name = $val";
+  
+  $ins = " $name=\"" . ($rep?:$val) . "\" ";
+  return $ins;
 }
 
 function gen_size_class($size, $extraval) {
@@ -34,7 +37,11 @@ function sc_form($params, $content) {
   $action = val_if_exists($params,'action')?:"/";
   $redirect = val_if_exists($params,'redirect')?:"";
   
-  return "<form action=\"$action\" name=\"$name\"" . gen_opt_field("redirect",$redirect) . gen_opt_field("target",$target) . gen_opt_field("class",$class) . "method=\"$method\">" . "<input type=\"hidden\" name=\"redirect-target\" value=\"$redirect\">" . do_shortcode($content) . "</form>";
+  return "<form action=\"$action\" name=\"$name\"" . gen_opt_field("redirect",$redirect) . gen_opt_field("target",$target) . gen_opt_field("class",$class) . "method=\"$method\">" . 
+    "<input type=\"hidden\" name=\"__process_form\" value=\"true\">" .
+    "<input type=\"hidden\" name=\"__process_form_action\" value=\"$action\">" .
+    "<input type=\"hidden\" name=\"redirect_target\" value=\"$redirect\">" .
+    do_shortcode($content) . "</form>";
 }
 
 function sc_header($params, $content) {
@@ -58,7 +65,7 @@ function sc_textbox($params, $content) {
   $placeholder = val_if_exists($params,'label')?:"";
   if ($required) $placeholder .= " *";
 
-  return "<input name=\"$name\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">";
+  return "<input name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">";
 }
 
 function sc_textarea($params, $content) {
@@ -69,7 +76,7 @@ function sc_textarea($params, $content) {
   $placeholder = val_if_exists($params,'label')?:"";
   if ($required) $placeholder .= " *";
 
-  return "<textarea name=\"$name\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">" . do_shortcode($content) . "</textarea>";
+  return "<textarea name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">" . do_shortcode($content) . "</textarea>";
 }
 
 function sc_select($params, $content) {
@@ -87,7 +94,7 @@ function sc_select($params, $content) {
   }
   
   add_shortcode('option','sc_option');
-  $return = "<select name=\"$name\"  type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">" . do_shortcode($content) . "</select>";
+  $return = "<select name=\"formerly_form[$name]\"  type=\"text\" data-required=\"" . ($required?"true":"false") . "\" " . gen_size_class($size, $class) . ">" . do_shortcode($content) . "</select>";
   remove_shortcode('option');
   return $return;
 }
@@ -100,15 +107,15 @@ function sc_checkbox($params, $content) {
   $placeholder = val_if_exists($params,'label')?:"";
   if ($required) $placeholder .= " *";
 
-  return "<div". gen_size_class($size, "checkbox " . $class) . "><input type=\"checkbox\" name=\"$name\" placeholder=\"$placeholder\" data-required=\"" . ($required?"true":"false") . "\">" . $content . "</div>";
+  return "<div". gen_size_class($size, "checkbox " . $class) . "><input type=\"checkbox\" name=\"formerly_form[$name]\" placeholder=\"$placeholder\" data-required=\"" . ($required?"true":"false") . "\">" . $content . "</div>";
 }
 
 function sc_submit($params, $content) {
   $class =       val_if_exists($params,'class')?:"btn btn-default";
   $size =        val_if_exists($params,'size')?:null;
-  $name =        val_if_exists($params,'name')?:"my-form-" . ++$incrmt;
+  $name =        val_if_exists($params,'name')?:null;
   
-  return "<button class=\"$class\" name=\"$name\" type=\"submit\" " . gen_size_class($size, $class) . ">$content</button>";
+  return "<button class=\"$class\"" . gen_opt_field("name",$name,"formerly_form[$name]") . "type=\"submit\" " . gen_size_class($size, $class) . ">$content</button>";
 }
 
 add_shortcode('form','sc_form');

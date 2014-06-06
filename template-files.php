@@ -3,6 +3,7 @@
 Template Name: File Browser Template
 */
 
+$tlc = get_post_meta($post->ID,'advedt_files_browse_category',true);
 $args = array(
     'post_type' => 'attachment',
     'numberposts' => -1,
@@ -11,10 +12,13 @@ $args = array(
     ); 
 $attachments = get_posts($args);
 $map = array();
+
 if ($attachments) {
     foreach ($attachments as $post) {
+      $category = get_post_meta($post->ID, 'media_extensions_category', TRUE)?:null;
       $state = get_post_meta($post->ID, 'media_extensions_folder', TRUE)?:null;
       $subbox = get_post_meta($post->ID, 'media_extensions_subfolder', TRUE)?:"";
+      if ($tlc != "" && $tlc != $category) continue;
       if ($state == null) continue;
       if (!isset($map[$state])) $map[$state] = array();
       if (!isset($map[$state][$subbox])) $map[$state][$subbox] = array();
@@ -22,6 +26,7 @@ if ($attachments) {
       if (!in_array($post->ID,$map[$state][$subbox])) $map[$state][$subbox][] = $post;
     }
 }
+
 
 ?>
 
@@ -31,10 +36,11 @@ if ($attachments) {
   </div>
     <div class="row">
       <div class="col-xs-10">
-        <?php foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue;?>
+        <?php $hit = false; foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; $hit = true; ?>
           <a href="#" class="state-button" data-tab="<?php echo $aid; ?>"><?php echo $aid; ?></a>
         <?php endforeach ?>
         <div class="state-box" id="state-box">
+          <?php if (!$hit) { ?>There are no state pooled trust documents in this category.<?php } ?>
         </div>
       </div>
     </div>

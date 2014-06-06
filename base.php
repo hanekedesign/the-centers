@@ -17,6 +17,17 @@
     }
   ?>
 
+  <?php if ($_REQUEST['from-form']==true) : ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 page-body">
+        <br/>
+        <div class="alert alert-success"><strong>Success!</strong> Your information has been sent.</div>
+      </div>
+    </div>
+  </div>
+  <?php endif ?>
+
   <main role="main">
     <?php include roots_template_path(); ?>
   </main><!-- /.main -->

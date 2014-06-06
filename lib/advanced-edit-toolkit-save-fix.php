@@ -45,6 +45,8 @@
 
   update_post_meta( $post_id, 'advedit_footer_mode', esc_html($_POST['advedit_footer_mode']?:""));
 
+update_post_meta( $post_id, 'advedt_files_browse_category', esc_html($_POST['advedt_files_browse_category']?:""));
+
   // FAQ Data
   update_post_meta( $post_id, 'advedit_faq_root_title', esc_html($_POST['faq_root_title']?:""));
   update_post_meta( $post_id, 'advedit_faq_root_body', esc_html($_POST['faq_root_body']?:""));
@@ -65,6 +67,11 @@
     update_post_meta( $post_id, 'advedt_minibox_link_'.$i, esc_html($_POST['advedt_minibox_link_'.$i]?:""));
     update_post_meta( $post_id, 'advedt_minibox_link_text_'.$i, esc_html($_POST['advedt_minibox_link_text_'.$i]?:""));
     update_post_meta( $post_id, 'advedt_minibox_color_'.$i, esc_html($_POST['advedt_minibox_color_'.$i]?:""));
+  }
+
+  foreach ($_POST['advedt_files_folder_desc'] as $key => $data) {
+    update_post_meta( $post_id, 'advedt_files_folder_desc_'.$key, esc_html($data['desc']));  
+    update_post_meta( $post_id, 'advedt_files_folder_link_'.$key, esc_html($data['url']));  
   }
 
   /*$prefix = "contact_form_0_";

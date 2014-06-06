@@ -1,7 +1,7 @@
 <header class="container banner">
   <div class="content row">
     <div class="col-xs-12"><!-- TODO: XS - this might change to a two-line setup -->
-      <div class="img"></div>
+      <a href="/"><div class="img"></div></a>
       <div class="callbox">
         <p class="cta">Call Us</p>
         <p class="number"><?php echo get_option('phone_number',"(888) 888-8888"); ?></p>

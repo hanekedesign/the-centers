@@ -1,4 +1,4 @@
-<header class="banner container" role="banner">
+<!--<header class="banner container" role="banner">
   <div class="row">
     <div class="col-lg-9">
       <a class="brand" href="<?php echo home_url('/') ?>"><?php bloginfo('name'); ?></a>
@@ -11,8 +11,8 @@
       </nav>
     </div>
     <div class="callbox col-lg-3">
-      <p>CALL US</p><!-- TODO: Editable -->
-      <p class="phonenumber">(888) 888 8888</p><!-- TODO: Editable -->
+      <p>CALL US</p><!-- TODO: Editable --
+      <p class="phonenumber"><?php echo get_option('phone_number',"(888) 888-8888"); ?></p>
     </div>
   </div>
-</header>
+</header>test -->

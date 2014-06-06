@@ -88,6 +88,10 @@ function render_advanced_box($leftaligned) {
     $pagetype = 2;
   } else if ($template_file === 'template-faq.php') {
     $pagetype = 3;
+  } else if ($template_file === 'template-documents.php') {
+    $pagetype = 4;
+  } else if ($template_file === 'template-files.php') {
+    $pagetype = 5;
   } else {
     $pagetype = 0;
   }
@@ -108,6 +112,10 @@ function render_advanced_box($leftaligned) {
         } else if ($pagetype === 3) {
           render_sidebar('3');
           render_faq_editor('9');
+        } else if ($pagetype === 4) {
+          render_documents_editor('12');
+        } else if ($pagetype === 5) {
+          render_files_editor('12');
         } else {
           render_editor('12');
         }
@@ -180,6 +188,100 @@ function render_faq_editor($col) {
         </div>
       </div>
 <?php
+}
+
+function render_documents_editor($col) {
+  global $post;
+
+  $args = array(
+      'post_type' => 'attachment',
+      'numberposts' => -1,
+      'post_status' => null,
+      'post_parent' => null, // any parent
+      ); 
+  $attachments = get_posts($args);
+  $map = array();
+  if ($attachments) {
+      foreach ($attachments as $posts) {
+        $folder = get_post_meta($posts->ID, 'media_extensions_category', TRUE)?:null;
+        if ($folder == null || in_array($folder, $map)) continue;
+        $map[] = $folder;
+      }
+  }
+  
+  function getKeyName($str) {
+    return strtolower(preg_replace("/[^a-zA-Z0-9]+/", "", $str));
+  }
+
+  ?>
+      <div class="wp-col-<?php echo $col; ?>">
+        <div class="postbox">
+          <h4 class="hndle_"><span>Documents Root Editor</span></h4>
+          <div class="inside">        
+            <div class="wp-container">
+              <div class="wp-row">    
+                <div class="wp-col-12 meta-box-sortables ui-sortable inputmod">
+                  When a new top level document type is added, it will appear on this list.
+                  You can edit the description here.<br/>
+                  <?php foreach ($map as $key) : ?>                    
+                    <h2><?php echo $key ?></h2>
+                    <input type="text" placeholder="Target URL" name="advedt_files_folder_desc[<?php echo getKeyName($key); ?>][url]" value="<?php echo get_post_meta($post->ID,'advedt_files_folder_link_'.getKeyName($key),true); ?>">
+                    <textarea placeholder="Description" class="small" name="advedt_files_folder_desc[<?php echo getKeyName($key); ?>][desc]"><?php echo get_post_meta($post->ID,'advedt_files_folder_desc_'.getKeyName($key),true); ?></textarea>
+                  <?php endforeach ?> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <?php
+}
+
+function render_files_editor($col) {
+  global $post;
+
+  $args = array(
+      'post_type' => 'attachment',
+      'numberposts' => -1,
+      'post_status' => null,
+      'post_parent' => null, // any parent
+      ); 
+  $attachments = get_posts($args);
+  $map = array();
+  if ($attachments) {
+      foreach ($attachments as $posts) {
+        $folder = get_post_meta($posts->ID, 'media_extensions_category', TRUE)?:null;
+        if ($folder == null || in_array($folder, $map)) continue;
+        $map[] = $folder;
+      }
+  }
+  
+  function getKeyName($str) {
+    return strtolower(preg_replace("/[^a-zA-Z0-9]+/", "", $str));
+  }
+
+  ?>
+      <div class="wp-col-<?php echo $col; ?>">
+        <div class="postbox">
+          <h4 class="hndle_"><span>File Browser Editor</span></h4>
+          <div class="inside">        
+            <div class="wp-container">
+              <div class="wp-row">    
+                <div class="wp-col-12 meta-box-sortables ui-sortable inputmod">
+                  Select a Top Level Category<br/>
+                  <select name="advedt_files_browse_category" id="advedt_files_browse_category">
+                  <option value="">All</option>
+                  <?php foreach ($map as $key) : ?>                    
+                    <option<?php if ($key == get_post_meta($post->ID,'advedt_files_browse_category',true)) echo " selected"; ?>><?php echo $key ?></option>
+                  <?php endforeach ?> 
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <?php
 }
 
 function render_sidebar($col) {
