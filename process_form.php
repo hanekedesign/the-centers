@@ -1,6 +1,7 @@
 <?php
 require_once('wp-load.php'); 
-$location = $_REQUEST['redirect_target']?:substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],'?'));
+$stripped = substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],'?'));
+$location = $_REQUEST['redirect_target']?:$stripped?:$_SERVER['HTTP_REFERER'];
 
 $email = "<h3><strong> A form has been submitted from a form on 'The Centers'.</strong></h3>";
 
@@ -20,9 +21,10 @@ echo $email;
 echo '</div>';
 
 echo "<p>If you are not automatically redirected, click <a href=\"$location?from-form=true\">here.</a></p>";
+echo "<sub>$location</sub>";
 
 wp_mail(get_option('forms_email',"webmaster@localhost"), "Form Submission from 'The Centers' website.",$email);
 
-wp_redirect( $location . "?from-form=true");
+wp_redirect( $location . "?from-form=true&res=" . $location);
 die();
 ?>
