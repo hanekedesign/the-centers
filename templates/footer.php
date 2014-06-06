@@ -17,7 +17,7 @@
 <footer class="foot-main" role="contentinfo">
   <div class="container">
     <div class="row">
-      <div class="col-xs-5">
+      <div class="col-sm-5">
         <form class="newsletter sidebar-box">
           <label for="male">Sign Up for Our Newsletter</label><br>
           <input type="email" name="email" id="email" placeholder="Your email address"><br>
@@ -25,14 +25,14 @@
         </form>
         <?php get_search_form_with_label(true,"Search the Site"); ?>
       </div>
-      <div class="col-xs-3 col-xs-offset-1 footer-menu-pad">
+      <div class="col-sm-3 col-sm-offset-1 footer-menu-pad">
         <?php
           if (has_nav_menu('footer_nav_left')) :
             wp_nav_menu(array('theme_location' => 'footer_nav_left', 'menu_class' => 'nav nav-footer'));
           endif;
         ?>
       </div>
-      <div class="col-xs-2 footer-menu-pad">
+      <div class="col-sm-2 footer-menu-pad">
         <?php
           if (has_nav_menu('footer_nav_right')) :
             wp_nav_menu(array('theme_location' => 'footer_nav_right', 'menu_class' => 'nav nav-footer'));

@@ -3,6 +3,11 @@ require_once('wp-load.php');
 $stripped = substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],'?'));
 $location = $_REQUEST['redirect_target']?:$stripped?:$_SERVER['HTTP_REFERER'];
 
+add_filter( 'wp_mail_content_type', 'set_content_type' );
+function set_content_type( $content_type ){
+	return 'text/html';
+}
+
 $email = "<h3><strong> A form has been submitted from a form on 'The Centers'.</strong></h3>";
 
 foreach ($_REQUEST['formerly_form'] as $key => $item) {

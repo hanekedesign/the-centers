@@ -17,6 +17,16 @@
   </div>
 </header>
 
+<?php
+function new_nav_menu_items($items) {
+    $homelink = '<li class="sm-only"><a href="' . home_url( '/about' ) . '">' . __('About Us') . '</a></li>';
+    // add the home link to the end of the menu
+    $items = $items . $homelink;
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'new_nav_menu_items' );
+?>
+
 <nav class="nav-main" role="navigation">
   <div class="container">
     <div class="content row">
@@ -24,12 +34,17 @@
         <?php
           if (has_nav_menu('primary_navigation')) :
             wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav nav-blocks'));
-          endif;
+          endif;          
         ?>
       </div>
     </div>
   </div>
 </nav>
+
+
+<?php
+remove_filter( 'wp_nav_menu_items', 'new_nav_menu_items' );
+?>
 
 <?php
   if (is_page() || is_home() || is_single()) {

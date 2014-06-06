@@ -128,11 +128,15 @@
     display: inline-block;
     margin-right: 40px;
     > a {
+      font-size: 16px;
       line-height: 85px;
       padding: 0;
-      font-size: 16px;
       font-family: @font-family-sans-serif;
       color: @gray;
+    }
+    @media (max-width: @screen-sm-max) {
+      > a { font-size: 14px; }
+      margin-right: 15px;
     }
     &:hover {
       > a {
@@ -141,44 +145,89 @@
       }
     }
   }
+  
+  @media (max-width: @screen-xs-max) {
+    display: none;
+  }
+
 }
 
-.nav-blocks {
-  display: block;
-  width: 100%;
-  border-collapse: collapse;
-  
-  > li {
-    float: none;
-    border-right: 2px solid @gray-light;
-    border-left: 2px solid @gray-light;
-    display: table-cell;
-    text-align: center;
-    width: 1%;
-    text-transform: uppercase;
-    font-weight: 400;
-    line-height: 30px;
-    height: 30px;
+.nav-justify {
+  overflow: hidden;
+  .nav-blocks {
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
 
-    > a {
-      white-space: pre;
-      color: @white;
-      font-family: @font-family-sans-serif;
-      padding: 0;
-    }
+    margin: -2px 0;
     
-    &:hover {
-      > a {      
-        color: @secondary;
-        background-color: transparent;
+    > li {
+      float: none;
+      border-right: 2px solid @gray-light;
+      border-left: 2px solid @gray-light;
+      display: table-cell;
+      text-align: center;
+      width: 1%;
+      text-transform: uppercase;
+      font-weight: 400;
+      line-height: 30px;
+      height: 30px;
+
+      &:last-child { display: none; }
+      
+      @media (max-width: @screen-xs-max) {
+        &:last-child:nth-child(even) { display: block; }
+      }
+      
+      > a {
+        white-space: pre;
+        color: @white;
+        font-family: @font-family-sans-serif;
+        padding: 0;
+        @media (max-width: @screen-sm-max) {
+          white-space: normal;
+          line-height: 1.25;
+          padding: 5px 0;
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        width: 50%;
+        border: 1px solid @gray-light;
+        &:nth-child(even) {
+          border-right: 0;
+        }
+        &:nth-child(odd) {
+          border-left: 0;
+        }
+        display: inline-block;
+      }
+      
+      &:hover {
+        > a {      
+          color: @secondary;
+          background-color: transparent;
+        }
+      }
+    }
+
+    &.nav-justified {
+      .nav-justified();
+      .nav-tabs-justified();
+    }
+  }
+  
+  @media (max-width: @screen-xs-max) {
+    padding: 0;
+    .nav-blocks {
+      padding: 0;
+      li > {
+        float: left;
+        //border: 0px solid transparent;
       }
     }
   }
   
-  &.nav-justified {
-    .nav-justified();
-    .nav-tabs-justified();
-  }
 }
 
 .nav-tabs {

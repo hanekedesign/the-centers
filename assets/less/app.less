@@ -25,14 +25,13 @@ h1, h2, h3, h4, h5 {
 .banner { 
   .callbox {
     background: @primary;
-    width: 215px;
     height: 85px;
     float: right;
     font-family: @font-family-sans-serif;
     color: @white;
     text-transform: uppercase;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 20px;
     .cta {
       font-size: 18px;
       margin: 0;
@@ -44,6 +43,17 @@ h1, h2, h3, h4, h5 {
       margin: 0;
       padding: 0;
       line-height: 28px;
+      @media (max-width: @screen-sm-max) {
+        font-size: 18px;
+      }
+      @media (max-width: @screen-xs-max) {
+        line-height: 1;
+      }
+    }
+    @media (max-width: @screen-xs-max) {
+      height: 56px;
+      padding-top: 10px;
+      margin-right: -15px;
     }
   }
   .img {
@@ -53,7 +63,13 @@ h1, h2, h3, h4, h5 {
     float: left;
     width: 219px;
     height: 85px;
-  } 
+    @media (max-width: @screen-xs-max) {
+      width: 130px;
+      height: 56px;
+      background-size: contain;
+    }
+
+  }
 }
 
 .nav-main { 
@@ -65,7 +81,6 @@ h1, h2, h3, h4, h5 {
 }
 
 .subbanner {
-  max-height: 250px;
   overflow: hidden;
   &.color, .color {
     color: @white;
@@ -109,6 +124,7 @@ h1, h2, h3, h4, h5 {
     }
   }
   &.image-banner {
+    max-height: 250px;
     .text {
       padding: 20px;
     }
@@ -182,6 +198,10 @@ h1, h2, h3, h4, h5 {
     margin: 40px 0;
   }
   &.home-four {
+    @media (max-width: @screen-sm-max) {
+      display: none;
+    }
+
     margin-bottom: 40px;
     color: @white;
     .image {
@@ -315,6 +335,9 @@ h1, h2, h3, h4, h5 {
     height: 200px;
     background-position: center;
     background-size: cover;
+    @media (max-width: @screen-xs-max) {
+      display: none;
+    }
   }
   .content {
     padding: 10px 0;
@@ -338,7 +361,15 @@ h1, h2, h3, h4, h5 {
     font-weight: 700;
     font-style: italic;
     height: 28px;
-    margin-bottom: -28px;
+    
+    @media (max-width: @screen-sm-max) {
+      margin-bottom: 20px;
+    }
+    
+    @media (min-width: @screen-sm-min) {
+      margin-bottom: -28px;
+    }
+
     &.primary {
       background-color: @primary;
     }
@@ -381,6 +412,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .mini-box {
+  @media (max-width: @screen-sm-max) {
+    margin-bottom: 20px;
+  }
   .content {
     padding: 15px;
     color: @white;
@@ -589,6 +623,13 @@ h1, h2, h3, h4, h5 {
 /* ==========================================================================
    Sidebar
    ========================================================================== */
+
+aside {
+  @media (max-width: @screen-sm-max) {
+    margin-top: 30px;
+  }
+}
+
 .sidebar-box {
   margin: 20px 0;
   padding: 15px;
@@ -1013,7 +1054,9 @@ form.newsletter {
 }
 
 .footer-menu-pad {
-  padding: 25px 0 0 0;
+  @media (min-width: @screen-sm-min) {
+    padding: 25px 0 0 0;
+  }
 }
 
 .copy {
@@ -1021,9 +1064,17 @@ form.newsletter {
   color: @gray-lighter;
   display: inline-block;
   font-weight: 200;
+  @media (max-width: @screen-sm-max) {
+    margin-top: 20px;
+  }
   p {
     margin-left: 15px;
     display: inline-block;
+    @media (max-width: @screen-sm-max) {
+      display: block;
+      margin-left: 0;
+    }
+
   }
 }
 

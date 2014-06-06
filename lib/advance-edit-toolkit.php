@@ -83,7 +83,7 @@
         $sidebar_image = get_post_meta( $post->ID, 'advedit_sidebar_image', true );
         $sidebar_image_url = wp_get_attachment_image_src( $sidebar_image , 'full' )?:Array("");
         ?>
-        <aside class="col-sm-4" role="complementary">
+        <aside class="col-sm-4 col-xs-12" role="complementary">
           <?php echo $sidetra; ?>
           <div class="photo-sidebar">
             <div class="blurb"><?php echo $blurb; ?></div>
@@ -96,7 +96,7 @@
         $header = get_post_meta( $post->ID, 'advedit_sidebar_form_header', true)?:"";
         $color = get_post_meta( $post->ID, 'advedit_sidebar_form_color', true)?:"";
         ?>
-        <aside class="col-sm-4" role="complementary">
+        <aside class="col-sm-4  col-xs-12" role="complementary">
           <?php echo $sidetra; ?>
           <div class="contact-sidebar">
             <?php if ($header != "") : ?>
@@ -141,7 +141,7 @@
         } 
       
         ob_start();?>
-              <div class="col-xs-6">
+              <div class="col-sm-6">
                 <div class="text">
                   <h1><?php echo $title; ?></h1>
                   <p><?php echo $text; ?></p>
@@ -149,7 +149,7 @@
               </div>
         <?php $text_content = ob_get_clean();
         ob_start();?>
-              <div class="col-xs-6">
+              <div class="col-sm-6 hidden-xs">
                 <div class="image" style="background-image: url(<?php echo $image_url[0]; ?>)"></div>
               </div>
         <?php $image_content = ob_get_clean(); ?>
@@ -205,7 +205,7 @@
     $link_text = get_post_meta($post->ID, $root.'_minibox_link_text_'.$id, TRUE)?:0;
     $color = get_post_meta($post->ID, $root.'_minibox_color_'.$id, TRUE)?:"primary";
     ?>
-        <div class="col-md-3">
+        <div class="col-sm-3 col-xs-6">
           <a href="<?php echo $link; ?>" class="mini-box-link"><div class="mini-box <?php echo $color; ?>"> 
             <div class="content">
               <div class="lower"><?php echo $text; ?></div>          
@@ -231,7 +231,7 @@
             <div class="row">
               <?php generate_small_box("advedt",0); ?>
               <?php generate_small_box("advedt",1); ?>
-              <div class="col-xs-6">
+              <div class="col-sm-6 col-xs-12">
                 <div class="wide-box">
                   <div class="header">
                     <?php echo get_post_meta( $post->ID, 'advedt_widebox_header', true )?:""; ?>

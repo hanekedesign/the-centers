@@ -10,7 +10,7 @@ function generate_large_box($id) {
   $colors = array("secondary", "tertiary", "primary");
   $color = $colors[$id];
   ?>
-      <div class="col-md-4">
+      <div class="col-sm-4">
         <a href="<?php echo $link; ?>" class="no-ul">
           <div class="home-box"> 
             <div class="image" style="background-image: url(<?php echo $image_src[0]; ?>)"></div>
