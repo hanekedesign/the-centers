@@ -19,6 +19,7 @@ require_once locate_template('/lib/scripts.php');         // Scripts and stylesh
 require_once locate_template('/lib/custom.php');          // Custom functions
 require_once locate_template('/lib/formerly.php');        // Forms support
 require_once locate_template('/lib/global-settings.php'); // Global Configuration
+require_once locate_template('/lib/social.php');          // Social Configuration
 
 /* Get our DB name(s) */
 $variables_table = $wpdb->prefix . "centers_data";

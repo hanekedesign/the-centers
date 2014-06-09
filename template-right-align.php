@@ -3,16 +3,28 @@
 Template Name: Right-Aligned Template
 */
 include_once locate_template('/lib/advance-edit-toolkit.php');
-global $right_aligned;
 
-$panelmode = get_panel_mode();
+$panelmode = get_panel_mode(); 
+
+function get_body_css_class($id) {
+  switch ($id) {
+    case 0:
+      return "col-xs-12";
+    case 1:
+      return "col-md-8 col-xs-12";
+    case 2:
+      return "col-sm-8 col-xs-12";
+  }
+}
+
 ?>
 
 <div class="container page">
   <div class="row">
-    <div class="col-sm-<?php echo ($panelmode == 0)?12:8; ?> col-xs-12 page-body">
+    <?php ?>
+    <div class="page-body <?php echo get_body_css_class($panelmode); ?>">
       <?php get_template_part('templates/content', 'page'); ?>
     </div>
-    <?php $panelmode = generate_panel(); ?>
+    <?php generate_panel(""); ?>
   </div>
 </div>

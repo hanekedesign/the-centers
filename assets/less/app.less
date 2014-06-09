@@ -81,6 +81,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .subbanner {
+  @media (max-width: @screen-xs-max) {
+    .container {
+      padding: 0;
+    }
+  }
   overflow: hidden;
   &.color, .color {
     color: @white;
@@ -113,13 +118,21 @@ h1, h2, h3, h4, h5 {
         font-size: 36px;
         font-weight: 700;  
         font-style: italic;
-        line-height: 1.25;        
+        line-height: 1.25; 
+        margin-bottom: 20px;
+        @media (max-width: @screen-sm-max) {
+          font-size: 24px;
+          line-height: 28px;
+        }
       }
       p {
         font-size: 14px;
         line-height: 1.85;
         text-align: left;
         margin: 0;
+        @media (max-width: @screen-sm-max) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -139,15 +152,27 @@ h1, h2, h3, h4, h5 {
   &.text-banner {
     .text {
       padding: 30px 0;
+      @media (max-width: @screen-xs-max) {
+        padding: 20px;
+      }
     }
   }
   &.post-banner {
+    .blog-items {
+      @media (max-width: @screen-xs-max) {
+        padding: 0 40px;
+      }
+    }
     h1 {
       font-size: 36px;
       color: @white;
       font-weight: 700;
       font-style: italic;
       line-height: 1.25;
+      @media (max-width: @screen-xs-max) {
+        font-size: 20px;
+        line-height: 24px;
+      }
     }
     .category {
       font-size: 14px;
@@ -178,6 +203,10 @@ h1, h2, h3, h4, h5 {
     padding-top: 40px;
   }
   &.home-two {
+    @media (max-width: @screen-xs-max) {
+      padding-top: 40px;
+    }
+
     padding-top: 68px;
     padding-bottom: 40px;
     font-size: 18px;
@@ -198,7 +227,7 @@ h1, h2, h3, h4, h5 {
     margin: 40px 0;
   }
   &.home-four {
-    @media (max-width: @screen-sm-max) {
+    @media (max-width: @screen-xs-max) {
       display: none;
     }
 
@@ -219,8 +248,8 @@ h1, h2, h3, h4, h5 {
       .flow {
         padding-left: 20px;
         height: 350px;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding-top: 20px;
+        padding-bottom: 20px;
       }
       
       h3 {
@@ -245,6 +274,16 @@ h1, h2, h3, h4, h5 {
         bottom: 60px;
       }
     }
+    
+    @media (max-width: @screen-sm-max) {
+      .flow {      
+        margin: 15px
+      }
+      .container h3 {
+        font-size: 20px;        
+      } 
+    }
+
   }
 }
 
@@ -288,6 +327,9 @@ h1, h2, h3, h4, h5 {
     .document-entries {
       padding: 10px 0;
       margin-left: -15px;
+      @media (max-width: @screen-xs-max) {
+        margin-left: 20px;
+      }
       a {
         font-size: 14px;        
         display: block; 
@@ -345,6 +387,9 @@ h1, h2, h3, h4, h5 {
     .upper {
       font-size: 20px;
       color: @gray;
+      @media (max-width: @screen-sm-max) {
+        font-size: 18px;
+      }
     }
     .lower {
       font-size: 30px;
@@ -352,6 +397,9 @@ h1, h2, h3, h4, h5 {
       font-style: italic;
       color: @gray;
       line-height: 30px;
+      @media (max-width: @screen-sm-max) {
+        font-size: 26px;
+      }
     }
   }
   .bottom {
@@ -363,7 +411,7 @@ h1, h2, h3, h4, h5 {
     height: 28px;
     
     @media (max-width: @screen-sm-max) {
-      margin-bottom: 20px;
+      margin-bottom: 20px;      
     }
     
     @media (min-width: @screen-sm-min) {
@@ -392,6 +440,16 @@ h1, h2, h3, h4, h5 {
 .wide-box {
   height: 198px;
   background-color: @white;
+  padding: 10px;
+  
+  @media (max-width: @screen-sm-max) {
+    height: 150px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    height: 100%;
+  }
+  
   .header {
     line-height: 38px;
     font-size: 28px;
@@ -400,9 +458,24 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     font-weight: 800;
     padding: 20px 30px;
+    
+    @media (max-width: @screen-sm-max) {
+      font-size: 20px;
+      line-height: 30px;
+      padding: 10px 30px;
+      
+    }
+  }
+  .button-host {
+    width: 50%;
+    float: left;    
+    padding: 10px;
+    @media (max-width: @screen-sm-max) {
+      width: 100%;
+    }
   }
   button {
-    margin: 20px 20px;  
+    width: 100%;
   }
 }
 
@@ -419,15 +492,27 @@ h1, h2, h3, h4, h5 {
     padding: 15px;
     color: @white;
     height: 170px;
+    @media (max-width: @screen-sm-max) {
+      height: 150px;
+    }
+    @media (max-width: @screen-sm-max) {
+      height: 130px;
+    }
     .upper {
       font-size: 12px;
       margin-bottom: 10px;
+      @media (max-width: @screen-sm-max) {
+        font-size: 9px;
+      }
     }
     .lower {
       font-size: 26px;
       font-weight: 700;
       font-style: italic;
-      line-height: 137.5%;      
+      line-height: 137.5%;   
+      @media (max-width: @screen-sm-max) {
+        font-size: 16px;
+      }
     }
   }
   
@@ -479,6 +564,27 @@ h1, h2, h3, h4, h5 {
    ========================================================================== */
 
 .main { }
+
+.social-bar {
+  margin: 0 -2px;
+  .social-icon {
+    margin: 2px 2px;
+    width: 25px; 
+    height: 25px; 
+    background-size:contain;
+    display: inline-block;
+    &.facebook { background-image: url('../img/social/facebook.png'); }
+    &.googleplus { background-image: url('../img/social/googleplus.png'); }
+    &.linkedin { background-image: url('../img/social/linkedin.png'); }
+    &.pinterest { background-image: url('../img/social/pinterest.png'); }
+    &.tumblr { background-image: url('../img/social/tumblr.png'); }
+    &.twitter { background-image: url('../img/social/twitter.png'); }
+  }
+  &.large .social-icon {
+    width: 40px; 
+    height: 40px; 
+  }
+}
 
 /* Gallery Shortcode */
 .gallery-row { padding: 15px 0; }
@@ -569,6 +675,9 @@ h1, h2, h3, h4, h5 {
   }
   .input-col-6 {
     width: 50%;
+    @media (max-width: @screen-xs-max) {
+      width: 100%;
+    }
   }
   
   input[type="text"], select, textarea {
@@ -625,9 +734,9 @@ h1, h2, h3, h4, h5 {
    ========================================================================== */
 
 aside {
-  @media (max-width: @screen-sm-max) {
+  /*@media (max-width: @screen-sm-max) {
     margin-top: 30px;
-  }
+  }*/
 }
 
 .sidebar-box {
@@ -680,6 +789,24 @@ aside {
 }
 
 .sidebar-menu {
+  @media (max-width: @screen-xs-max) {
+    border-top: 1px solid @gray-lighter;
+  }
+  .header {
+    // TODO: Up arrow
+  }  
+  .header.expand {
+    // TODO: Down arrow    
+  }
+  
+  .collapse {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+  .collapsing {
+    padding: 0;
+  }
   margin-bottom: 10px;
   * {
     display: block;
@@ -688,6 +815,12 @@ aside {
     color: @white;
     font-size: 18px;
     padding: 5px 15px;
+    
+    @media (max-width: @screen-sm-max) {
+      line-height: 35px;
+      padding: 0 10px;
+      font-size: 14px;
+    }
   }
   .header {
     background-color:  @gray;
@@ -766,6 +899,9 @@ aside {
       font-style: italic;
       line-height: 46px;
       margin: 0;
+      @media (max-width: @screen-sm-max) {
+        font-size: 20px;
+      }
     }
     p {
       font-size: 14px;
@@ -850,7 +986,7 @@ aside {
     }
     .right { 
       float: right;
-      * {
+      > * {
         display: block;
         text-align: right;
       }

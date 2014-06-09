@@ -27,17 +27,20 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
       <?php while (have_posts()) : the_post(); ?>
       <div class="item">
         <div class="right">
-          <div class="social"><?php echo do_shortcode('[social]'); ?></div> 
-          <?php if ( has_post_thumbnail() ) : ?>
-            <?php the_post_thumbnail(array(130,130)); ?>
-          <?php endif ?>
+          <div class="social hidden-xs"><?php echo do_shortcode('[social]'); ?></div> 
+          <div class="hidden-xs">
+            <?php if ( has_post_thumbnail() ) : ?>
+              <?php the_post_thumbnail(array(130,130)); ?>
+            <?php endif ?>
+          </div>
         </div>
         <a href="<?php the_permalink(); ?>" class="title"><?php echo get_the_title(); ?></a>
         <div class="category">
           <?php the_category(", "); ?>
         </div>
         <div class="date"><?php echo get_the_date('m.d.Y'); ?></div>
-        <div class="excerpt"><?php echo get_the_excerpt(); ?></div>      
+        <div class="excerpt"><?php echo get_the_excerpt(); ?></div>  
+        <div class="social visible-xs"><?php echo do_shortcode('[social]'); ?></div> 
         <hr>
       </div>
       <?php endwhile; ?>

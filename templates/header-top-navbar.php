@@ -52,3 +52,34 @@ remove_filter( 'wp_nav_menu_items', 'new_nav_menu_items' );
     generate_header();
   }
 ?>
+
+<?php
+  $sidebar_siblm = get_post_meta( $post->ID, 'advedit_sidebar_sibling_menu', true )?:false;
+  $sidetra = "";
+
+  if ($sidebar_siblm) {
+    // Get 2nd level ID.
+    $tgt_post = $post;
+
+    while (get_post(get_post($tgt_post->ID)->post_parent)->post_parent != 0) {
+      $tgt_post = get_post($tgt_post->post_parent);
+    }
+
+    $parent = get_post($tgt_post->post_parent);
+    $post_args =  array(
+      'post_parent' => $tgt_post->ID,
+      'post_type'   => 'page', 
+      'posts_per_page' => -1,
+      'post_status' => 'publish' );
+    $children = get_children($post_args);
+    ?>
+        <div class="sidebar-menu visible-xs">
+          <div data-toggle="collapse" data-target="#test" class="header expand"><?php echo $parent->post_title; ?></div>
+          <div id="test" class="collapse">
+            <a href="<?php echo get_permalink($tgt_post->ID); ?>" class="subheader active"><?php echo $tgt_post->post_title; ?></a>
+            <?php foreach ($children as $child) { ?>
+            <a href="<?php echo get_permalink($child->ID); ?>" class="entry<?php echo ($child->ID == $post->ID)?" active":""?>"><?php echo $child->post_title; ?></a>
+            <?php } ?>
+          </div>
+        </div>
+<?php } ?>

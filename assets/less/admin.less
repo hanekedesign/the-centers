@@ -355,6 +355,18 @@ textarea {
   position: relative;
   cursor: pointer;
   background-position: center;
+  &.tiny {
+    min-height: 25px;
+    content: " ";
+    &::after {
+      font-size: 8px;
+      content: 'edit';
+      padding: 0 3px;
+      left: 10px;
+      bottom: -10px;
+      width: 15px;
+    }
+  }
   &::after {
     content: 'Click to Change Image';
     position: absolute;
@@ -369,6 +381,20 @@ textarea {
   &:hover::after {
     border-color: #555;
   }
+}
+
+/* Social */
+
+.social-icon {
+  width: 25px; 
+  height: 25px; 
+  background-size:contain;
+  &.facebook { background-image: url('../img/social/facebook.png'); }
+  &.googleplus { background-image: url('../img/social/googleplus.png'); }
+  &.linkedin { background-image: url('../img/social/linkedin.png'); }
+  &.pinterest { background-image: url('../img/social/pinterest.png'); }
+  &.tumblr { background-image: url('../img/social/tumblr.png'); }
+  &.twitter { background-image: url('../img/social/twitter.png'); }
 }
 
 /* Sorty */

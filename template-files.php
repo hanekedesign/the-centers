@@ -27,6 +27,9 @@ if ($attachments) {
     }
 }
 
+$hit = false; 
+foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; $hit = true; endforeach;
+
 
 ?>
 
@@ -34,16 +37,17 @@ if ($attachments) {
   <div class="row">
     <div class="col-xs-12"><h2>State Pooled Trust Documents</h2></div>
   </div>
+    <?php if (!$hit) { ?>
     <div class="row">
       <div class="col-xs-10">
-        <?php $hit = false; foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; $hit = true; ?>
+        <?php foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; ?>
           <a href="#" class="state-button" data-tab="<?php echo $aid; ?>"><?php echo $aid; ?></a>
         <?php endforeach ?>
         <div class="state-box" id="state-box">
-          <?php if (!$hit) { ?>There are no state pooled trust documents in this category.<?php } ?>
         </div>
       </div>
     </div>
+    <?php } ?>
   <?php if (isset($map['root'])) { foreach ($map['root'] as $aid => $child) { ?>
     <div class="row">
       <div class="col-xs-12">

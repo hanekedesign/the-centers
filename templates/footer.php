@@ -39,7 +39,7 @@
           endif;
         ?>
       </div>
-      <div class="col-xs-1 footer-menu-pad">
+      <div class="col-xs-1 footer-menu-pad socialbox">
         <a href="#" class="icon linkedin"></a>
       </div>
     </div>

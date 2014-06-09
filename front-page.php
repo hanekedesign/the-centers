@@ -62,14 +62,14 @@ function generate_large_box($id) {
 <div class="colored-back primary home-four">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-sm-6">
         <div class="flow">
           <h3><?php echo get_post_meta($post->ID, 'home_footer_header', TRUE)?:""; ?></h3>
           <p><?php echo get_post_meta($post->ID, 'home_footer_content', TRUE)?:""; ?></p>
           <a href="<?php echo get_post_meta($post->ID, 'home_footer_button_link', TRUE)?:""; ?>"><button class="btn btn-default"><?php echo get_post_meta($post->ID, 'home_footer_button_text', TRUE)?:""; ?></button></a>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-sm-6">
         <?php $image_url = wp_get_attachment_image_src( get_post_meta($post->ID, 'home_footer_image', TRUE)?:0 , 'full' )?:Array(""); ?>
         <div class="image" style="background-image: url(<?php echo $image_url[0]; ?>)"></div>
       </div>

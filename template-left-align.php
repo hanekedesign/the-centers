@@ -3,14 +3,28 @@
 Template Name: Left-Aligned Template
 */
 include_once locate_template('/lib/advance-edit-toolkit.php');
-$align = 0;
+
+$panelmode = get_panel_mode(); 
+
+function get_body_css_class($id) {
+  switch ($id) {
+    case 0:
+      return "col-xs-12";
+    case 1:
+      return "col-md-8 col-xs-12" . " col-md-push-4";
+    case 2:
+      return "col-sm-8 col-xs-12" . " col-sm-push-4";
+  }
+}
+
 ?>
 
 <div class="container page">
   <div class="row">
-    <?php $panelmode = generate_panel(); ?>
-    <div class="col-sm-<?php echo ($panelmode == 0)?12:8; ?> col-xs-12 page-body">
+    <?php ?>
+    <div class="page-body <?php echo get_body_css_class($panelmode); ?>">
       <?php get_template_part('templates/content', 'page'); ?>
     </div>
+    <?php generate_panel("col-sm-pull-8"); ?>
   </div>
 </div>
