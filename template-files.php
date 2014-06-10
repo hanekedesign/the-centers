@@ -30,24 +30,26 @@ if ($attachments) {
 $hit = false; 
 foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; $hit = true; endforeach;
 
-
+if (array_key_exists('National',$map)) {
+  $map = array('National' => $map['national']) + $map;
+}
 ?>
 
 <div class="container files-style">
+  <?php if ($hit) { ?>
   <div class="row">
     <div class="col-xs-12"><h2>State Pooled Trust Documents</h2></div>
   </div>
-    <?php if (!$hit) { ?>
-    <div class="row">
-      <div class="col-xs-10">
-        <?php foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; ?>
-          <a href="#" class="state-button" data-tab="<?php echo $aid; ?>"><?php echo $aid; ?></a>
-        <?php endforeach ?>
-        <div class="state-box" id="state-box">
-        </div>
+  <div class="row">
+    <div class="col-xs-10">
+      <?php foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; ?>
+        <a href="#" class="state-button" data-tab="<?php echo $aid; ?>"><?php echo $aid; ?></a>
+      <?php endforeach ?>
+      <div class="state-box" id="state-box">
       </div>
     </div>
-    <?php } ?>
+  </div>
+  <?php } ?>
   <?php if (isset($map['root'])) { foreach ($map['root'] as $aid => $child) { ?>
     <div class="row">
       <div class="col-xs-12">

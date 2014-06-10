@@ -500,6 +500,26 @@
   color: @color;
   background-color: @background;
 
+  &::after {
+    background-color: @background-hover;
+  }
+  
+  padding: 0 45px 0 30px;
+  @media (max-width: @screen-sm-max) {
+     padding: 0 25px 0 10px;
+  }
+  
+  &.left {
+    padding: 0 30px 0 45px;
+    @media (max-width: @screen-sm-max) {
+      padding: 0 10px 0 25px;
+    }
+    &::after {
+      left: 0;
+      background-color: @background-hover;
+    }
+  }
+  
   &:hover,
   &:focus,
   &:active,

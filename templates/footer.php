@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="number">Call <?php echo get_option('phone_number',"(888) 888-8888"); ?></div>
+        <a href="tel:<?php echo preg_replace("/[^0-9]/","",get_option('phone_number',"(888) 888-8888")); ?>" class="number">Call <?php echo get_option('phone_number',"(888) 888-8888"); ?></a>
         <a href="/contact/" class="contact">+ Contact Us Online</a>
       </div>
     </div>
@@ -39,8 +39,8 @@
           endif;
         ?>
       </div>
-      <div class="col-xs-1 footer-menu-pad socialbox">
-        <a href="#" class="icon linkedin"></a>
+      <div class="col-sm-1 col-xs-12 footer-menu-pad socialbox">
+        <?php echo do_shortcode('[social type="home" method="link"]'); ?>
       </div>
     </div>
   </div>

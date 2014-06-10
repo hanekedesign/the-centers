@@ -39,6 +39,8 @@ h1, h2, h3, h4, h5 {
       line-height: 16px;
     }
     .number {
+      color: @white;
+      text-decoration: none;
       font-size: 30px;
       margin: 0;
       padding: 0;
@@ -499,10 +501,14 @@ h1, h2, h3, h4, h5 {
       height: 130px;
     }
     .upper {
+        display: none; // Removed.
       font-size: 12px;
       margin-bottom: 10px;
       @media (max-width: @screen-sm-max) {
         font-size: 9px;
+      }
+      @media (max-width: @screen-xs-max) {
+        display: none;
       }
     }
     .lower {
@@ -566,9 +572,9 @@ h1, h2, h3, h4, h5 {
 .main { }
 
 .social-bar {
-  margin: 0 -2px;
+  margin: 0 -4px;
   .social-icon {
-    margin: 2px 2px;
+    margin: 4px;
     width: 25px; 
     height: 25px; 
     background-size:contain;
@@ -580,9 +586,26 @@ h1, h2, h3, h4, h5 {
     &.tumblr { background-image: url('../img/social/tumblr.png'); }
     &.twitter { background-image: url('../img/social/twitter.png'); }
   }
-  &.large .social-icon {
-    width: 40px; 
-    height: 40px; 
+  &.large {
+    &::before {
+      margin-top: 20px;
+      content: 'SHARE THIS ARTICLE';
+      font-style: italic;
+      font-weight: 700;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 6px;      
+    }
+    .social-icon {
+      width: 40px; 
+      height: 40px; 
+    }
+  }
+  &.home {
+    .social-icon {
+      width: 40px; 
+      height: 40px; 
+    }
   }
 }
 
@@ -612,6 +635,8 @@ h1, h2, h3, h4, h5 {
     background-color: @primary-darker;
     border-radius: 0;
     border: 0;
+    padding: 0;
+    text-align: center;
   }
 }
 
@@ -646,6 +671,7 @@ h1, h2, h3, h4, h5 {
     color: @gray;
     font-weight: 700;
     font-style: italic;
+    font-family: @font-family-sans-serif;
   }
   .contact-header {
     font-size: 14px;
@@ -703,6 +729,13 @@ h1, h2, h3, h4, h5 {
 /* ==========================================================================
    Short Codes
    ========================================================================== */
+.more {
+  span {
+    overflow: hidden;
+    display: inline-block;
+    display: none;
+  }
+}
 
 .subbox {
   padding: 24px;
@@ -944,7 +977,7 @@ aside {
 .blog-items {
   margin: 20px 0;
   .item {
-    min-height: 200px;
+    //min-height: 200px;
     position: relative;
     .title {
       font-size: 18px;
@@ -992,7 +1025,7 @@ aside {
       }
     }
     hr {
-      position: absolute;
+      //position: absolute;
       bottom: 0;
       margin: 10px 0px;
       height: 1px;
@@ -1176,6 +1209,7 @@ form.newsletter {
   font-weight: 700;
   line-height: 45px;
   .number, .contact { 
+    white-space: nowrap; // Fix for iPhone
     display: inline-block;
     margin: 0 50px;
   }

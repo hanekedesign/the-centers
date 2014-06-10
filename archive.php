@@ -44,8 +44,8 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
         <hr>
       </div>
       <?php endwhile; ?>
-      <div class="nav-previous alignleft"><?php next_posts_link( '<button class="btn btn-default">Previous</button>' ); ?></div>
-      <div class="nav-next alignright"><?php previous_posts_link( '<button class="btn btn-default">Next</button>' ); ?></div>
+      <div class="nav-previous alignleft"><?php next_posts_link( '<button class="btn btn-blue left">Previous</button>' ); ?></div>
+      <div class="nav-next alignright"><?php previous_posts_link( '<button class="btn btn-blue">Next</button>' ); ?></div>
     </div>
     <div class="col-sm-4">
       <?php locate_template('/templates/blog-sidebar.php', true, false); ?>

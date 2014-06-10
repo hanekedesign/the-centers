@@ -67,6 +67,15 @@ $('.accordion .title').click(function() {
     $('.body',$(this).parent()).slideDown('fast');
   }
 });
+  
+$('.more').click(function() {
+  var span = $('span',$(this));
+  var root = $(this);
+  var trigger = span.slideToggle(300,function() {
+    $('a',root).text(span.is(":hidden")?"More":"Less");
+  });
+  return false;
+});
 
 $('#news-archive').change(function(a,b) {
   document.location.href = $(this).val();

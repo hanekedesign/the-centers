@@ -140,4 +140,7 @@ add_shortcode('subbox',function($attr,$content) {
   return $return;
 });
 
-
+add_shortcode('more',function($attr,$content) {
+  $return = '<div class="more"><a href="#">More</a><span>' . do_shortcode($content) . '</span></div>';
+  return $return;
+});

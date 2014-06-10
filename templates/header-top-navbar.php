@@ -4,7 +4,7 @@
       <a href="/"><div class="img"></div></a>
       <div class="callbox">
         <p class="cta">Call Us</p>
-        <p class="number"><?php echo get_option('phone_number',"(888) 888-8888"); ?></p>
+        <a class="number" href="tel:<?php echo preg_replace("/[^0-9]/","",get_option('phone_number',"(888) 888-8888")); ?>"><?php echo get_option('phone_number',"(888) 888-8888"); ?></a>
       </div>
       <nav class="nav-mini">
           <?php

@@ -15,7 +15,7 @@ Template Name: About Template
   </div>
   <div class="row">
     <div class="col-md-5 col-md-offset-2 col-sm-8 col-xs-12">
-      <p class="phone-number"><?php echo get_option('phone_number',"(888) 888-8888"); ?></p>
+      <a href="tel:<?php echo preg_replace("/[^0-9]/","",get_option('phone_number',"(888) 888-8888")); ?>" class="phone-number"><?php echo get_option('phone_number',"(888) 888-8888"); ?></a>
     </div>
     <div class="col-md-3 col-sm-4 col-xs-12">
       <div class="contact-\header">

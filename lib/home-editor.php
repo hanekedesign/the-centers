@@ -85,7 +85,7 @@ function create_mini_editor($id) {
             </select>          
             <div class="color-box" style="background-color: rgb(155, 199, 100);"></div>
             <input type="hidden" id="minibox-color-<?php echo $id; ?>" name="minibox-color-<?php echo $id; ?>" value="tertiary">
-            <input type="text" placeholder="Mini Header" class="header" name="home_minibox_header_<?php echo $id; ?>" value="<?php echo $header; ?>">
+            <!--<input type="text" placeholder="Mini Header" class="header" name="home_minibox_header_<?php echo $id; ?>" value="<?php echo $header; ?>">-->
             <input type="text" placeholder="Content" class="subheader" name="home_minibox_text_<?php echo $id; ?>" value="<?php echo $text; ?>">            
             <input type="text" placeholder="Link Text" class="subheader" name="home_minibox_link_text_<?php echo $id; ?>" value="<?php echo $link_text; ?>">
             <input type="text" placeholder="Link Location" class="subheader" name="home_minibox_link_<?php echo $id; ?>" value="<?php echo $link; ?>">            
