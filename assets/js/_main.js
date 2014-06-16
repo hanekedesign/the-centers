@@ -68,11 +68,11 @@ $('.accordion .title').click(function() {
   }
 });
   
-$('.more').click(function() {
-  var span = $('span',$(this));
+$('.more a').click(function() {
+  var span = $('span',$(this).parent());
   var root = $(this);
   var trigger = span.slideToggle(300,function() {
-    $('a',root).text(span.is(":hidden")?"More":"Less");
+    $(root).text(span.is(":hidden")?"More":"Less");
   });
   return false;
 });
@@ -81,18 +81,55 @@ $('#news-archive').change(function(a,b) {
   document.location.href = $(this).val();
 });
   
-$('button[type=submit]').click(function() {
-  if (!$(this).closest('form').data('validated')) {
+$('button[type=submit]').each(function(a,b) {
+  var root = $(b).closest('form');
+  var submit = $(this);
+  
+  if (!root.data('validated')) {
     return true;
   }
-  valid = true;
-  $('input, textarea').each(function(a,b) {
-    if ($(b).data('required') === true && $(b).val().replace("\\s","") === "") {
-      valid = false;
-      alert("Please enter a value for: " + $(b).attr('placeholder').substr(0,$(b).attr('placeholder').length-2));
-    }
+  
+  $('input, textarea',root).on('input',function() { $(this).change(); });
+  $('input, textarea',root).change(function() {
+    var suben = true;
+    $(this).removeClass("error-h");
+    
+    $('input, textarea',root).each(function(a,b) {
+      $(b).removeClass("error");
+      if ($(b).data('required') && $(b).val().trim() === "") {
+        $(b).addClass("error");
+        suben = false;
+      }
+      if ($(b).data('validation')) {
+        switch ($(b).data('validation')) {
+            case "email":
+              var email = /[A-Z0-9\._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,12}/ig;
+              if ($(b).val().trim() !== "" && !email.test($(b).val())) {
+                suben = false;
+                $(b).addClass("error");
+              }
+              break;
+            case "phone":
+              var phone = /^[0-9]{0,2}[-.\s]?[(]?[0-9]{3}[)]?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/igm;
+              if ($(b).val().trim() !== "" && !phone.test($(b).val())) {
+                suben = false;
+                $(b).addClass("error");
+              }
+              break;
+        }
+      }
+    });
+    submit.data("disabled",!suben);
   });
-  return valid;
+  $('input, textarea',root).change();
+});
+
+$('button[type=submit]').click(function() {
+  if ($(".error",$(this).closest('form')).length === 0) {
+    return true;
+  }
+  $(".error",$(this).closest('form')).addClass("error-h");
+  return false;
 });
 
 })(jQuery); // Fully reference jQuery after this point.

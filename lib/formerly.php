@@ -64,9 +64,12 @@ function sc_textbox($params, $content) {
   $name =        val_if_exists($params,'name')?:"my-form-" . ++$incrmt;
   $required =    val_if_exists($params,'required')?:false;
   $placeholder = val_if_exists($params,'label')?:"";
+  $validation = val_if_exists($params,'validation')?:null;
+  $maxlength = val_if_exists($params,'limit')?:null;
+
   if ($required) $placeholder .= " *";
 
-  return "<div ". gen_size_class($size, $class) ."><input name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . gen_opt_field("class",$class) . "\" ></div>";
+  return "<div ". gen_size_class($size, $class) ."><input name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\"" . gen_opt_field("class",$class) . gen_opt_field("data-validation",$validation) . gen_opt_field("maxlength",$maxlength) . "data-required=\"" . ($required?"true":"false") . "\" ></div>";
 }
 
 function sc_textarea($params, $content) {
@@ -75,9 +78,10 @@ function sc_textarea($params, $content) {
   $name =        val_if_exists($params,'name')?:"my-form-" . ++$incrmt;
   $required =    val_if_exists($params,'required')?:false;
   $placeholder = val_if_exists($params,'label')?:"";
+  $maxlength = val_if_exists($params,'limit')?:null;
   if ($required) $placeholder .= " *";
 
-  return "<div ". gen_size_class($size, $class) ."><textarea name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\" data-required=\"" . ($required?"true":"false") . gen_opt_field("class",$class) . "\">" . do_shortcode($content) . "</textarea></div>";
+  return "<div ". gen_size_class($size, $class) ."><textarea name=\"formerly_form[$name]\" placeholder=\"$placeholder\" type=\"text\" ". gen_opt_field("class",$class) . gen_opt_field("maxlength",$maxlength) . "data-required=\"" . ($required?"true":"false") ."\">" . do_shortcode($content) . "</textarea></div>";
 }
 
 function sc_select($params, $content) {

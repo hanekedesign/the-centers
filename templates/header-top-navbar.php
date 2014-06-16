@@ -3,7 +3,7 @@
     <div class="col-xs-12"><!-- TODO: XS - this might change to a two-line setup -->
       <a href="/"><div class="img"></div></a>
       <div class="callbox">
-        <p class="cta">Call Us</p>
+        <a href="/contact" class="cta">CONTACT US</a>
         <a class="number" href="tel:<?php echo preg_replace("/[^0-9]/","",get_option('phone_number',"(888) 888-8888")); ?>"><?php echo get_option('phone_number',"(888) 888-8888"); ?></a>
       </div>
       <nav class="nav-mini">

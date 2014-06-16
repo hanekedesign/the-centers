@@ -50,14 +50,15 @@ function get_social_link($target,$method) {
 add_shortcode('social',function($attr,$content) {
   $method = (isset($attr['method']))?$attr['method']:"share";
   $type = (isset($attr['type']))?$attr['type']:"post";
-  $networks = get_option('social_networks',"")?:array();
+  $networks_post = get_option('social_networks',"")?:array();
   $networks_home = get_option('social_networks_home',"")?:array();
+  $networks = $type=="home"?$networks_home:$networks_post;
   $return = '<div class="social-bar ' . $type . '">';
+  
   foreach ($networks as $network => $null) {
-    if (isset($networks_home[$network]) || $type != "home") {
-      $return .= '<a target="_blank" class="social-icon '.$network.'" href="' . get_social_link($network,$method) . '"></a>';  
-    }
+    $return .= '<a target="_blank" class="social-icon '.$network.'" href="' . get_social_link($network,$method) . '"></a>';  
   }
+  
   $return .= '</div>';
   return $return;
 });
@@ -142,6 +143,12 @@ function social_options() {
           <td><input type="checkbox" name="social_networks[twitter]"<?php if (array_key_exists('twitter',$networks)) echo "checked"; ?>></input> Twitter</td>
           <td><input type="checkbox" name="social_networks_home[twitter]"<?php if (array_key_exists('twitter',$networks_home)) echo "checked"; ?>></input> Show on Footer</td>
           <td><input type="text" name="social_networks_links[twitter]" value="<?php if (array_key_exists('twitter',$network_links)) {echo $network_links['twitter'];} else {echo "http://twitter.com/[username]";} ?>"></input></td>
+        </tr>        
+        <tr>
+          <td><div style="" class="social-icon youtube"></div></td>
+          <td><input type="checkbox" disabled name="social_networks[youtube]"></input> YouTube</td>
+          <td><input type="checkbox" name="social_networks_home[youtube]"<?php if (array_key_exists('youtube',$networks_home)) echo "checked"; ?>></input> Show on Footer</td>
+          <td><input type="text" name="social_networks_links[youtube]" value="<?php if (array_key_exists('youtube',$network_links)) {echo $network_links['youtube'];} else {echo "http://youtube.com/[username]";} ?>"></input></td>
         </tr>
       </table>
       <?php submit_button(); ?>

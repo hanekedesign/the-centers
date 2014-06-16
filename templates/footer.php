@@ -18,7 +18,9 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-5">
-        <form class="newsletter sidebar-box">
+        <form class="newsletter sidebar-box" action="http://cl.publicaster.com/OptIn.aspx?OptinFormID=1&26241823=6335" method="post">
+          <input type="hidden" name="26241823" value="6335">
+          <input type="hidden" name="OptinFormID" value="1">
           <label for="male">Sign Up for Our Newsletter</label><br>
           <input type="email" name="email" id="email" placeholder="Your email address"><br>
           <button type="submit" value="Submit">Sign up</button>

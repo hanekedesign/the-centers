@@ -37,6 +37,11 @@ h1, h2, h3, h4, h5 {
       margin: 0;
       padding: 0;
       line-height: 16px;
+      color: @white;
+      display: block;
+      &:hover {
+        text-decoration: none;
+      }
     }
     .number {
       color: @white;
@@ -65,10 +70,10 @@ h1, h2, h3, h4, h5 {
     float: left;
     width: 219px;
     height: 85px;
+    background-size: contain;
     @media (max-width: @screen-xs-max) {
       width: 130px;
       height: 56px;
-      background-size: contain;
     }
 
   }
@@ -140,8 +145,19 @@ h1, h2, h3, h4, h5 {
   }
   &.image-banner {
     max-height: 250px;
+    @media (max-width: @screen-xs-min) {
+      max-height: 300px;
+    }
     .text {
       padding: 20px;
+      @media (max-width: @screen-sm-max) {
+        h1 {
+          margin-bottom: 10px;          
+        }
+        p {
+          line-height: 1.5
+        }
+      }
     }
     .image {
       width: 100%;
@@ -269,6 +285,10 @@ h1, h2, h3, h4, h5 {
         -webkit-font-smoothing: subpixel-antialiased; // Fix smoothing in Chrome/Safari
         font-smoothing: subpixel-antialiased; // Fix smoothing in Chrome/Safari
         letter-spacing: 0.4px;
+        
+        @media (max-width: @screen-sm-max) and (min-width: @screen-sm-min)  {
+          line-height: 1.7;
+        }
       }
       
       button {
@@ -585,6 +605,7 @@ h1, h2, h3, h4, h5 {
     &.pinterest { background-image: url('../img/social/pinterest.png'); }
     &.tumblr { background-image: url('../img/social/tumblr.png'); }
     &.twitter { background-image: url('../img/social/twitter.png'); }
+    &.youtube { background-image: url('../img/social/youtube.png'); }
   }
   &.large {
     &::before {
@@ -923,6 +944,9 @@ aside {
     color: @white;
   }
   .form {
+    .error-h {
+      box-shadow: 0px 0px 4px 2px red inset;
+    }
     padding: 20px 15px;
     background-color: @gray;
     h3 {
@@ -1135,13 +1159,21 @@ select {
   width: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
   appearance: none;
   display: block;
   border-radius: 0;
   padding: 0 10px;
   color: @white;
+  text-indent: 1px;
+  text-overflow: ''; /* this is important! */
 }
  
+select::-ms-expand {
+  display: none;
+}
+
 form {
   &::after {
     content: " ";
