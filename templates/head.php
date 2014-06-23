@@ -19,4 +19,5 @@
   <script type="text/javascript" src="//use.typekit.net/fny7rpa.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo esc_url(get_feed_link()); ?>">
+  <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.png" />
 </head>

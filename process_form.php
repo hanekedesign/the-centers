@@ -3,6 +3,14 @@ require_once('wp-load.php');
 $stripped = substr($_SERVER['HTTP_REFERER'],0,strrpos($_SERVER['HTTP_REFERER'],'?'));
 $location = $_REQUEST['redirect_target']?:$stripped?:$_SERVER['HTTP_REFERER'];
 
+$date = time() - base_convert($_REQUEST['pzz35f2'],15,10)/1000;
+
+if (isset($_REQUEST['n8a8hspv']) || !isset($_REQUEST['pzz35f2']) || $date > 5000) {
+  echo 'SUCCESS';
+  die();
+}
+
+
 add_filter( 'wp_mail_content_type', 'set_content_type' );
 function set_content_type( $content_type ){
 	return 'text/html';

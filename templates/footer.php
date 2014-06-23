@@ -23,7 +23,7 @@
           <input type="hidden" name="OptinFormID" value="1">
           <label for="male">Sign Up for Our Newsletter</label><br>
           <input type="email" name="email" id="email" placeholder="Your email address"><br>
-          <button type="submit" value="Submit">Sign up</button>
+          <button type="submit" name="submit"  value="Submit">Sign up</button>
         </form>
         <?php get_search_form_with_label(true,"Search the Site"); ?>
       </div>

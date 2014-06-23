@@ -42,6 +42,7 @@ function sc_form($params, $content) {
     "<input type=\"hidden\" name=\"__process_form\" value=\"true\">" .
     "<input type=\"hidden\" name=\"__process_form_action\" value=\"$action\">" .
     "<input type=\"hidden\" name=\"redirect_target\" value=\"$redirect\">" .
+    "<input type=\"text\" id=\"n8a8hspz\" name=\"n8a8hspv\" value=\"422511\" style=\"display: none;\">" .
     do_shortcode($content) . "</form>";
 }
 

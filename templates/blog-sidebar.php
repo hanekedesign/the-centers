@@ -26,7 +26,7 @@
         <input type="hidden" name="OptinFormID" value="1">
         <label for="male">Sign Up for Our Newsletter</label><br>
         <input type="email" name="UEmail" id="email" placeholder="Your email address"><br>
-        <button type="submit" value="Submit">Sign up</button>
+        <button type="submit" name="submit" value="Submit">Sign up</button>
       </form>
       <div class="sidebar-box">
         <div class="title">News Archive</div>
