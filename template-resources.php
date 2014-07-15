@@ -17,8 +17,9 @@ $post_args =  array(
   'post_parent' => $post->ID,
   'post_type'   => 'page', 
   'posts_per_page' => -1,
+  'orderby' => 'menu_order',
   'post_status' => 'publish' );
-$children = get_children($post_args);
+$children = get_posts($post_args);
 
 ?>
 
@@ -28,8 +29,9 @@ $children = get_children($post_args);
           'post_parent' => $child->ID,
           'post_type'   => 'page', 
           'posts_per_page' => 6,
+          'orderby' => 'menu_order',
           'post_status' => 'publish' );
-        $subchildren = get_children($subpost_args);
+        $subchildren = get_posts($subpost_args);
         ?>
     <div class="row">
       <div class="col-xs-12">

@@ -78,6 +78,7 @@ function create_mini_editor($id) {
         <div class="small-box-editor">
           <div class="color-selector">
             <select data-field="#minibox-color-<?php echo $id; ?>" data-title="Theme" name="home_minibox_color_<?php echo $id; ?>">
+              <option value="primary" data-color="rgb(245,192,65)" <?php echo ($color=="primary")?"selected":""; ?>>Primary</option>
               <option value="secondary" data-color="rgb(111,193,228)" <?php echo ($color=="secondary")?"selected":""; ?>>Secondary</option>
               <option value="tertiary" data-color="rgb(155,199,100)" <?php echo ($color=="tertiary")?"selected":""; ?>>Tertiary</option>
               <option value="gray" data-color="rgb(191,191,191)" <?php echo ($color=="gray")?"selected":""; ?>>Gray</option>
