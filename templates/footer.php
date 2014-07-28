@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-xs-12">
         <a href="tel:<?php echo preg_replace("/[^0-9]/","",get_option('phone_number',"(888) 888-8888")); ?>" class="number">Call <?php echo get_option('phone_number',"(888) 888-8888"); ?></a>
-        <a href="/contact/" class="contact">+ Contact Us Online</a>
+        <a href="/contact/" class="contact">+ Contact Us</a>
       </div>
     </div>
   </div>
