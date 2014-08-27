@@ -27,6 +27,8 @@ if ($attachments) {
     }
 }
 
+ksort($map);
+
 $hit = false; 
 foreach ($map as $aid => $child) : if ($aid === 'root' || $aid === '') continue; $hit = true; endforeach;
 
